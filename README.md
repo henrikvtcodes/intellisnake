@@ -8,7 +8,7 @@
 python -m venv .venv
 ```
 
-2. Activate the Virtual Environment  
+2. Activate the Virtual Environment (may be able to ignore this if using VSCode)
    MacOS
 
 ```sh
