@@ -4,9 +4,9 @@
 
 ## VSCode
 
-1. Open Command Palette
-   `ctrl+shift+p`
-2. Search for and activate the `Python: Create Environment` option
+1. Open Command Palette with
+   `Ctrl + Shift + P`
+2. Search for and click on the `Python: Create Environment` option
 3. Click on the `Venv` option
 4. Use (click on) default Python Version (should be highlighted)
 5. Select `requirements.txt` for dependencies to install, then click Ok
