@@ -1,4 +1,7 @@
 import pygame
+import math
+
+pygame.init()
 
 
 class Colors():
@@ -19,7 +22,9 @@ class Fonts():
 class Sizes():
     SCREEN_WIDTH = 600
     SCREEN_HEIGHT = 400
-    
+
+    # Attempt at autoscaling
+    # SNAKE_BLOCK = math.gcd(SCREEN_WIDTH, SCREEN_HEIGHT) / 20
     SNAKE_BLOCK = 10
 
 SNAKE_SPEED = 15
