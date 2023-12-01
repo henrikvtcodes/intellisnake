@@ -4,7 +4,8 @@ import numpy as np
 from snake import Snake, Player
 import time
 import random
-from constants import *
+from constants import Fonts, Colors, Sizes, SNAKE_SPEED, DIRECTION_VALUES
+
 
 
 # Displays the score. currently only called on the losing screen.
