@@ -10,7 +10,7 @@ from constants import *
 # Displays the score. currently only called on the losing screen.
 # Do we want to call it elsewhere so there is a constant score?
 def your_score(score): 
-  value = score_font.render("Your Score: " + str(score), True, green)
+  value = score_font.render("Your Score: " + str(score), True, Colors.GREENISH)
   dis.blit(value, [0, 0])
 
 # Draws a snake. Currently called for one snake, should be able
@@ -44,8 +44,8 @@ def game_loop():
   snake_length = 1
 
   # generates a starting apple position.
-  food_x = round(random.randrange(0, Sizes.SCREEN_WIDTH - snake_block) / 10.0) * 10.0
-  food_y = round(random.randrange(0, Sizes.SCREEN_HEIGHT - snake_block) / 10.0) * 10.0
+  food_x = round(random.randrange(0, Sizes.SCREEN_WIDTH - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+  food_y = round(random.randrange(0, Sizes.SCREEN_HEIGHT - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
 
   # continues as long as the game isn't over.
   # yeah.
@@ -104,7 +104,7 @@ def game_loop():
     snake_x1 += x1_change
     snake_y1 += y1_change
     # draws the background and food
-    dis.fill(background_color)
+    dis.fill(Colors.BACKGROUND)
     pygame.draw.rect(dis, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
 
     # creates a list for the snake head
@@ -156,23 +156,16 @@ pygame.display.update()
 pygame.display.set_caption("Intellisnake")
 
 # the colors I used
-background_color = (255, 112, 205)
-snake_color = (90, 196, 255)
-black = (0, 0, 0)
-red = (255, 0, 0)
-food_color = (200, 0, 200)
-green = (52, 235, 134)
+# H: Colors have been moved to constants.Colors
 
 # size of the snake square.
 # I figured it was easier to deal
 # in squares to start rather than 
 #starting with the assets.
-snake_block = 10
 
 # makes the clock and sets the game
 # speed
 clock = pygame.time.Clock()
-snake_speed = 15
 
 # fonts used for score and the lose
 # menu
