@@ -64,6 +64,11 @@ def game_loop():
 
       #waits for the user to pick an option
       for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+          game_over = True
+          game_close = False
+
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_q:
             game_close = False
@@ -173,7 +178,7 @@ snake_block = 10
 # makes the clock and sets the game
 # speed
 clock = pygame.time.Clock()
-snake_speed = 15
+snake_speed = 30
 
 # fonts used for score and the lose
 # menu
