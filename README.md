@@ -1,5 +1,13 @@
 # intellisnake
 
+By Henrik VT (@henrikvtcodes) and Kelsyn C. (@LegendOfDust)
+
+IntelliSnake is a fun new version of the classic game Snake that comes with features such as:
+
+- 2P Multiplayer
+- an algorithmic opponent
+- Chaos Mode
+
 # Get Started
 
 ## VSCode

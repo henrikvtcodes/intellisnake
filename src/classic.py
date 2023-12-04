@@ -5,25 +5,8 @@ from snake import Snake, Player
 import time
 import random
 from constants import Fonts, Colors, Sizes, SNAKE_SPEED, DIRECTION_VALUES
-
-
-
-# Displays the score. currently only called on the losing screen.
-# Do we want to call it elsewhere so there is a constant score?
-def your_score(score: int): 
-  value = Fonts.SCORE_FONT.render("Your Score: " + str(score), True, Colors.GREENISH)
-  dis.blit(value, [0, 0])
-
-# Draws a snake. Currently called for one snake, should be able
-# to call it for the second snake as well.
-def draw_snake(snake_size: int, snake_list):
-  for x in snake_list:
-    pygame.draw.rect(dis, Colors.SNAKE, [x[0], x[1], snake_size, snake_size])
-
-# displays the message for the losing screen. idk why I can't get it centered.
-def message(msg: str, color: tuple[int, int, int]):
-  mesg = Fonts.STYLE.render(msg, True, color)
-  dis.blit(mesg, [Sizes.SCREEN_WIDTH / 6, Sizes.SCREEN_HEIGHT / 3])
+import init as globals
+from draw_fns import draw_snake, draw_message, draw_score
 
 # The main game outline is here. We could make
 # other functions for other gamemodes.
@@ -59,9 +42,9 @@ def classic_mode():
     # and/or a main menu option to choose a
     # new gamemode.
     while game_close == True:
-      dis.fill(Colors.BLACK)
-      message("You lost! Press Q-Quit or C-Play again", Colors.RED)
-      your_score(snake_length - 1)
+      globals.window.fill(Colors.BLACK)
+      draw_message("You lost! Press Q-Quit or C-Play again", Colors.RED)
+      draw_score(snake_length - 1)
       pygame.display.update()
 
       #waits for the user to pick an option
@@ -110,8 +93,8 @@ def classic_mode():
     snake_x1 += x1_change
     snake_y1 += y1_change
     # draws the background and food
-    dis.fill(Colors.BACKGROUND)
-    pygame.draw.rect(dis, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
+    globals.window.fill(Colors.BACKGROUND)
+    pygame.draw.rect(globals.window, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
 
     # creates a list for the snake head
     # and appends that list to the list containg
@@ -133,7 +116,7 @@ def classic_mode():
         game_close = True
 
     # draws the snake. 
-    draw_snake(Sizes.SNAKE_BLOCK, snake_list)
+    draw_snake(Sizes.SNAKE_BLOCK, Colors.SNAKE, snake_list)
 
     # shows every thing
     pygame.display.update()
@@ -146,34 +129,13 @@ def classic_mode():
       snake_length += 1
 
     # makes time pass.
-    clock.tick(SNAKE_SPEED)
+    globals.clock.tick(SNAKE_SPEED)
 
   # ends the game once the loop is fully complete
   pygame.quit()
 #   quit()
 
-pygame.init()
-
-# sets display size 
-dis = pygame.display.set_mode((Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT))
-
-# shows the screen
-pygame.display.update()
-pygame.display.set_caption("Intellisnake")
-
-# the colors I used
-# H: Colors have been moved to constants.Colors
-
 # size of the snake square.
 # I figured it was easier to deal
 # in squares to start rather than 
 #starting with the assets.
-
-# makes the clock and sets the game
-# speed
-clock = pygame.time.Clock()
-
-# fonts used for score and the lose
-# menu
-font_style = pygame.font.SysFont(None, 30)
-score_font = pygame.font.SysFont("comicsansms", 35)
