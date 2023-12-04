@@ -60,13 +60,13 @@ def pvp_mode():
     # new gamemode.
     while game_close == True:
       globals.window.fill(Colors.FOOD)
-      if green_win == True:
+      if blue_lose == True:
         draw_message("Green snake wins! Press Q-Quit or C-Play again", Colors.GREENISH)
-      elif blue_win == True:
+      elif green_lose == True:
         draw_message("Blue snake wins! Press Q-Quit or C-Play again", Colors.SNAKE)
       else:
-        dis.fill(Colors.BLACK)
-        message("You both lose! Press Q-Quit or C-Play again", Colors.RED)
+        globals.window.fill(Colors.BLACK)
+        draw_message("You both lose! Press Q-Quit or C-Play again", Colors.RED)
       
       pygame.display.update()
 
