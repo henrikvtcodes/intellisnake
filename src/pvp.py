@@ -6,23 +6,9 @@ import time
 import random
 from constants import Fonts, Colors, Sizes, SNAKE_SPEED, DIRECTION_VALUES
 
+import init as globals
 
-
-# Displays the score. Not currently used in this gamemode.
-# Do we want to call it elsewhere so there is a constant score?
-def your_score(score: int): 
-  value = Fonts.SCORE_FONT.render("Your Score: " + str(score), True, Colors.GREENISH)
-  dis.blit(value, [0, 0])
-
-# Draws a snake
-def draw_snake(snake_size: int, color, snake_list):
-  for x in snake_list:
-    pygame.draw.rect(dis, color, [x[0], x[1], snake_size, snake_size])
-
-# displays the message for the losing screen
-def message(msg: str, color: tuple[int, int, int]):
-  mesg = Fonts.STYLE.render(msg, True, color)
-  dis.blit(mesg, [Sizes.SCREEN_WIDTH / 6, Sizes.SCREEN_HEIGHT / 3])
+from draw_fns import draw_snake, draw_message
 
 # loop for playing pvp mode
 def pvp_mode():
@@ -65,14 +51,14 @@ def pvp_mode():
     # and/or a main menu option to choose a
     # new gamemode.
     while game_close == True:
-      dis.fill(Colors.FOOD)
+      globals.window.fill(Colors.FOOD)
       if green_win == True:
-        message("Green snake wins! Press Q-Quit or C-Play again", Colors.GREENISH)
+        draw_message("Green snake wins! Press Q-Quit or C-Play again", Colors.GREENISH)
       elif blue_win == True:
-        message("Blue snake wins! Press Q-Quit or C-Play again", Colors.SNAKE)
+        draw_message("Blue snake wins! Press Q-Quit or C-Play again", Colors.SNAKE)
       else:
-        dis.fill(Colors.BLACK)
-        message("You both lose! Press Q-Quit or C-Play again", Colors.RED)
+        globals.window.fill(Colors.BLACK)
+        draw_message("You both lose! Press Q-Quit or C-Play again", Colors.RED)
       
       pygame.display.update()
 
@@ -151,8 +137,8 @@ def pvp_mode():
     snake_x2 += x2_change
     snake_y2 += y2_change
     # draws the background and food
-    dis.fill(Colors.BACKGROUND)
-    pygame.draw.rect(dis, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
+    globals.window.fill(Colors.BACKGROUND)
+    pygame.draw.rect(globals.window, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
 
     # creates a list for the snake head
     # and appends that list to the list containg
@@ -235,7 +221,7 @@ def pvp_mode():
       snake_length_2 += 1
 
     # makes time pass.
-    clock.tick(SNAKE_SPEED)
+    globals.clock.tick(SNAKE_SPEED)
 
   # ends the game once the loop is fully complete
   pygame.quit()
