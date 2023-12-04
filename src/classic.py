@@ -168,12 +168,3 @@ pygame.display.set_caption("Intellisnake")
 # I figured it was easier to deal
 # in squares to start rather than 
 #starting with the assets.
-
-# makes the clock and sets the game
-# speed
-clock = pygame.time.Clock()
-
-# fonts used for score and the lose
-# menu
-font_style = pygame.font.SysFont(None, 30)
-score_font = pygame.font.SysFont("comicsansms", 35)
