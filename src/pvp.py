@@ -6,26 +6,28 @@ import time
 import random
 from constants import Fonts, Colors, Sizes, SNAKE_SPEED, DIRECTION_VALUES
 
+import init as globals
+
 
 
 # Displays the score. Not currently used in this gamemode.
 # Do we want to call it elsewhere so there is a constant score?
 def your_score(score: int): 
   value = Fonts.SCORE_FONT.render("Your Score: " + str(score), True, Colors.GREENISH)
-  dis.blit(value, [0, 0])
+  globals.window.blit(value, [0, 0])
 
 # Draws a snake
 def draw_snake(snake_size: int, color, snake_list):
   for x in snake_list:
-    pygame.draw.rect(dis, color, [x[0], x[1], snake_size, snake_size])
+    pygame.draw.rect(globals.game_display, color, [x[0], x[1], snake_size, snake_size])
 
 # displays the message for the losing screen
 def message(msg: str, color: tuple[int, int, int]):
   mesg = Fonts.STYLE.render(msg, True, color)
-  dis.blit(mesg, [Sizes.SCREEN_WIDTH / 6, Sizes.SCREEN_HEIGHT / 3])
+  globals.window.blit(mesg, [Sizes.SCREEN_WIDTH / 6, Sizes.SCREEN_HEIGHT / 3])
 
 # loop for playing pvp mode
-def pvp_mode():
+def pvp_mode(game_display: pygame.Surface ):
   game_over = False
   game_close = False
   blue_win = False
@@ -33,10 +35,10 @@ def pvp_mode():
   
   # Generates starting position of both 
   # snakes.
-  snake_x1 = Sizes.SCREEN_WIDTH / 2
-  snake_y1 = Sizes.SCREEN_HEIGHT / 2
-  snake_x2 = Sizes.SCREEN_WIDTH / 2 - 50
-  snake_y2 = Sizes.SCREEN_HEIGHT / 2
+  snake_x1 = game_display.get_width() / 2
+  snake_y1 = game_display.get_height() / 2
+  snake_x2 = game_display.get_width() / 2 - 50
+  snake_y2 = game_display.get_height() / 2
 
   # This is what decides how far the snakes 
   # move.
@@ -51,8 +53,8 @@ def pvp_mode():
   snake_length_2 = 1
 
   # generates a starting apple position.
-  food_x = round(random.randrange(0, Sizes.SCREEN_WIDTH - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
-  food_y = round(random.randrange(0, Sizes.SCREEN_HEIGHT - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+  food_x = round(random.randrange(0, game_display.get_width() - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+  food_y = round(random.randrange(0, game_display.get_width() - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
 
   # continues as long as the game isn't over.
   # yeah.
@@ -65,7 +67,7 @@ def pvp_mode():
     # and/or a main menu option to choose a
     # new gamemode.
     while game_close == True:
-      dis.fill(Colors.FOOD)
+      game_display.fill(Colors.FOOD)
       if green_win == True:
         message("Green snake wins! Press Q-Quit or C-Play again", Colors.GREENISH)
       elif blue_win == True:
@@ -151,8 +153,8 @@ def pvp_mode():
     snake_x2 += x2_change
     snake_y2 += y2_change
     # draws the background and food
-    dis.fill(Colors.BACKGROUND)
-    pygame.draw.rect(dis, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
+    game_display.fill(Colors.BACKGROUND)
+    pygame.draw.rect(game_display, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
 
     # creates a list for the snake head
     # and appends that list to the list containg
@@ -226,16 +228,18 @@ def pvp_mode():
     # if the snake has the food, generates
     # a new food positon and grows the snake
     if snake_x1 == food_x and snake_y1 == food_y:
-      food_x = round(random.randrange(0, Sizes.SCREEN_WIDTH - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
-      food_y = round(random.randrange(0, Sizes.SCREEN_HEIGHT - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+      food_x = round(random.randrange(0, game_display.get_width() - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+      food_y = round(random.randrange(0, game_display.get_width() - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
       snake_length_1 += 1
     elif snake_x2 == food_x and snake_y2 == food_y:
-      food_x = round(random.randrange(0, Sizes.SCREEN_WIDTH - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
-      food_y = round(random.randrange(0, Sizes.SCREEN_HEIGHT - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+      food_x = round(random.randrange(0, game_display.get_width() - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+      food_y = round(random.randrange(0, game_display.get_width() - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
       snake_length_2 += 1
-
+      
+    
+    globals.window.blit(globals.score_display, (Sizes.SCORE_DISPLAY_HEIGHT, 0))
     # makes time pass.
-    clock.tick(SNAKE_SPEED)
+    globals.clock.tick(SNAKE_SPEED)
 
   # ends the game once the loop is fully complete
   pygame.quit()
@@ -243,18 +247,5 @@ def pvp_mode():
 
 pygame.init()
 
-# sets display size 
-dis = pygame.display.set_mode((Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT))
-
-# shows the screen
-pygame.display.update()
-pygame.display.set_caption("Intellisnake")
-
 # makes the clock and sets the game
 # speed
-clock = pygame.time.Clock()
-
-# fonts used for score and the lose
-# menu
-font_style = pygame.font.SysFont(None, 30)
-score_font = pygame.font.SysFont("comicsansms", 35)
