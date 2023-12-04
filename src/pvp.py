@@ -145,14 +145,16 @@ def pvp_mode():
     
     # checks if the p1 snake is out of bounds. 
     # assigns win to green if true.
-    if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 == 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 == 0:
+    if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 < 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 < 0:
+      print("Out of bounds")
       game_close = True
       blue_lose = True
 
     # checks if the p2 snake is out of bounds.
     # removes win from p1 if both are true, gives
     # win to p2 if only this is true. 
-    if snake_x2 == Sizes.SCREEN_WIDTH or snake_x2 == 0 or snake_y2 == Sizes.SCREEN_HEIGHT or snake_y2 == 0:
+    if snake_x2 == Sizes.SCREEN_WIDTH or snake_x2 < 0 or snake_y2 == Sizes.SCREEN_HEIGHT or snake_y2 < 0:
+      print(snake_x2, snake_y2)
       game_close = True
       if blue_lose == True:
         both_lose = True
@@ -194,11 +196,13 @@ def pvp_mode():
     # itself, ends the game if it has
     for x in snake_list_1[:-1]:
       if x == snake_head_1:
+        print("Hit self")
         game_close = True
         blue_lose = True
     
     for x in snake_list_2[:-1]:
       if x == snake_head_2:
+        print("Hit self")
         game_close = True
         if blue_lose == True:
           both_lose = True
@@ -208,12 +212,14 @@ def pvp_mode():
     # checks to see if p2 ran into p1
     for i in snake_list_1[:-1]:
       if i == snake_head_2:
+        print("collided with other player")
         game_close = True
         green_lose = True
     
     # checks to see if p1 ran into p2
     for i in snake_list_2[:-1]:
       if i == snake_head_1:
+        print("Collided with other player")
         game_close = True
         if green_lose == True:
           both_lose = True
@@ -223,6 +229,7 @@ def pvp_mode():
       # checks to see if they bonked heads.
       # if they have, sets both to having lost
       if snake_head_1 == snake_head_2:
+        print("Head to head")
         game_close = True
         both_lose = True
 
