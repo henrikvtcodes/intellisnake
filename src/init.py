@@ -16,4 +16,6 @@ game_display = pygame.Surface((Sizes.SCREEN_WIDTH, Sizes.GAME_DISPLAY_HEIGHT))
 
 pygame.display.set_caption("Intellisnake")
 
+pygame.display.update()
+
 clock = pygame.time.Clock()
