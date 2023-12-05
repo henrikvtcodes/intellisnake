@@ -1,14 +1,19 @@
 import pygame
 from pygame.locals import *
 import numpy as np
-from snake import Snake, Player
-import time
+from food import gen_food_position
 import random
-from constants import Fonts, Colors, Sizes, SNAKE_SPEED, DIRECTION_VALUES
+from constants import Fonts, Colors, GameEndStates, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, DIRECTION_VALUES
 
 import init as globals
 
 from draw_fns import draw_snake, draw_message
+
+def start_pvp():
+  # sets the window state to playing
+  # the next time the main loop, well, loops, it will run the function for the gamemode.
+  globals.GameStateContainer.window_state = GameWindowStates.PLAYING
+  globals.GameStateContainer.game_mode = GameModes.PVP
 
 # loop for playing pvp mode
 def pvp_mode():
@@ -43,14 +48,11 @@ def pvp_mode():
   snake_length_2 = 1
 
   # generates a starting apple position.
-  food_x = random.randint(0, Sizes.SCREEN_WIDTH)
-  food_y = random.randint(0, Sizes.SCREEN_HEIGHT)
-  food_x = food_x - food_x % Sizes.SNAKE_BLOCK
-  food_y = food_y - food_y % Sizes.SNAKE_BLOCK
+  food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
 
   # continues as long as the game isn't over.
   # yeah.
-  while not game_over:
+  while globals.GameStateContainer.window_state == GameWindowStates.PLAYING:
 
     # after receiving the lose condition
     # this occurs, prompting whether or not
@@ -61,9 +63,9 @@ def pvp_mode():
     while game_close == True:
       globals.window.fill(Colors.FOOD)
       if blue_lose == True:
-        draw_message("Green snake wins! Press Q-Quit or C-Play again", Colors.GREENISH)
+        draw_message("Player 2 (Green) snake wins! Press Q-Quit or C-Play again", Colors.GREENISH)
       elif green_lose == True:
-        draw_message("Blue snake wins! Press Q-Quit or C-Play again", Colors.SNAKE)
+        draw_message("Player 1 (Blue) snake wins! Press Q-Quit or C-Play again", Colors.SNAKE)
       else:
         globals.window.fill(Colors.BLACK)
         draw_message("You both lose! Press Q-Quit or C-Play again", Colors.RED)
@@ -76,11 +78,14 @@ def pvp_mode():
         if event.type == pygame.QUIT:
           game_over = True
           game_close = False
+          globals.GameStateContainer.window_state = GameWindowStates.END
 
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_q:
             game_close = False
             game_over = True
+            globals.GameStateContainer.window_state = GameWindowStates.END
+
           if event.key == pygame.K_c:
             pvp_mode()
 
@@ -94,7 +99,7 @@ def pvp_mode():
     for event in pygame.event.get():
 
       if event.type == pygame.QUIT:
-        game_over = True
+        globals.GameStateContainer.window_state = GameWindowStates.EXIT
       
       if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
@@ -128,6 +133,9 @@ def pvp_mode():
       print("Out of bounds")
       game_close = True
       blue_lose = True
+      globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
+      globals.GameStateContainer.window_state = GameWindowStates.END
+
 
     # checks if the p2 snake is out of bounds.
     # removes win from p1 if both are true, gives
@@ -136,9 +144,12 @@ def pvp_mode():
       print(snake_x2, snake_y2)
       game_close = True
       if blue_lose == True:
-        both_lose = True
+        globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
       else:
-        green_lose = True
+        globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
+
+      globals.GameStateContainer.window_state = GameWindowStates.END
+
     
     # changes the snake positions
     snake_x1 += x1_change
@@ -178,15 +189,20 @@ def pvp_mode():
         print("Hit self")
         game_close = True
         blue_lose = True
+        globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
+        globals.GameStateContainer.window_state = GameWindowStates.END
+
     
     for x in snake_list_2[:-1]:
       if x == snake_head_2:
         print("Hit self")
         game_close = True
         if blue_lose == True:
-          both_lose = True
+          globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
         else:
-          green_lose = True
+          globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
+          
+        globals.GameStateContainer.window_state = GameWindowStates.END
 
     # checks to see if p2 ran into p1
     for i in snake_list_1[:-1]:
@@ -194,6 +210,8 @@ def pvp_mode():
         print("collided with other player")
         game_close = True
         green_lose = True
+        globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
+        globals.GameStateContainer.window_state = GameWindowStates.END
     
     # checks to see if p1 ran into p2
     for i in snake_list_2[:-1]:
@@ -201,9 +219,10 @@ def pvp_mode():
         print("Collided with other player")
         game_close = True
         if green_lose == True:
-          both_lose = True
+          globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
         else:
-          blue_lose = True
+          globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
+        globals.GameStateContainer.window_state = GameWindowStates.END
 
       # checks to see if they bonked heads.
       # if they have, sets both to having lost
@@ -211,6 +230,9 @@ def pvp_mode():
         print("Head to head")
         game_close = True
         both_lose = True
+        globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
+        globals.GameStateContainer.window_state = GameWindowStates.END
+        
 
     # draws both snakes
     draw_snake(Sizes.SNAKE_BLOCK, Colors.SNAKE, snake_list_1)
@@ -222,21 +244,11 @@ def pvp_mode():
     # if the snake has the food, generates
     # a new food positon and grows the snake
     if snake_x1 == food_x and snake_y1 == food_y:
-      food_x = random.randint(0, Sizes.SCREEN_WIDTH)
-      food_y = random.randint(0, Sizes.SCREEN_HEIGHT)
-      food_x = food_x - food_x % Sizes.SNAKE_BLOCK
-      food_y = food_y - food_y % Sizes.SNAKE_BLOCK
+      food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
       snake_length_1 += 1
     elif snake_x2 == food_x and snake_y2 == food_y:
-      food_x = random.randint(0, Sizes.SCREEN_WIDTH)
-      food_y = random.randint(0, Sizes.SCREEN_HEIGHT)
-      food_x = food_x - food_x % Sizes.SNAKE_BLOCK
-      food_y = food_y - food_y % Sizes.SNAKE_BLOCK
+      food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
       snake_length_2 += 1
 
     # makes time pass.
     globals.clock.tick(SNAKE_SPEED)
-
-  # ends the game once the loop is fully complete
-  pygame.quit()
-#   quit()
