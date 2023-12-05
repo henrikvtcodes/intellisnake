@@ -10,7 +10,10 @@ def draw_snake(snake_size: int, color, snake_list):
 # displays the message for the losing screen
 def draw_message(msg: str, color: tuple[int, int, int]):
   mesg = Fonts.STYLE.render(msg, True, color)
-  globals.window.blit(mesg, [Sizes.SCREEN_WIDTH / 6, Sizes.SCREEN_HEIGHT / 3])
+  # centers the message
+  width = globals.window.get_width()
+  height = globals.window.get_height()
+  globals.window.blit(mesg, ((width - mesg.get_width()) / 2, (height - mesg.get_height()) / 2))
   
   # displays the score. Not currently used in this gamemode.
 # Do we want to call it elsewhere so there is a constant score?
