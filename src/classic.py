@@ -4,9 +4,15 @@ import numpy as np
 from snake import Snake, Player
 import time
 import random
-from constants import Fonts, Colors, Sizes, SNAKE_SPEED, DIRECTION_VALUES
+from constants import Fonts, Colors, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, DIRECTION_VALUES
 import init as globals
 from draw_fns import draw_snake, draw_message, draw_score
+
+def start_classic():
+  # sets the window state to playing
+  # the next time the main loop, well, loops, it will run the function for the gamemode.
+  globals.GameStateContainer.window_state = GameWindowStates.PLAYING
+  globals.GameStateContainer.game_mode = GameModes.CLASSIC
 
 # The main game outline is here. We could make
 # other functions for other gamemodes.
