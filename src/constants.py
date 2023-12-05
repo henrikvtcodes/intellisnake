@@ -21,30 +21,36 @@ class Fonts():
     STYLE = pygame.font.SysFont(None, 30)
     SCORE_FONT = pygame.font.SysFont("comicsansms", 36)
 
+# Global title text object
 TITLE_TEXT = Fonts.SCORE_FONT.render("Intellisnake", True, Colors.WHITE)
 
+
 class Sizes():
-    SCREEN_WIDTH = 640
-    SCREEN_HEIGHT = 480
+    """ This class contains all the dimensions for the game."""
+    SCREEN_WIDTH = 1024
+    SCREEN_HEIGHT = 768
+    """ Screen Sizes (width,height): (640, 480), (800, 600), (1024, 768), (1280, 720)"""
     
     SCORE_DISPLAY_HEIGHT = SCREEN_HEIGHT // 10
     GAME_DISPLAY_HEIGHT = SCREEN_HEIGHT - SCORE_DISPLAY_HEIGHT
 
     # Attempt at autoscaling
-    # SNAKE_BLOCK = math.gcd(SCREEN_WIDTH, SCREEN_HEIGHT) / 10
-    SNAKE_BLOCK = 10
+    SNAKE_BLOCK = math.gcd(SCREEN_WIDTH, SCREEN_HEIGHT) / 10
+    # SNAKE_BLOCK = 10
 
 SNAKE_SPEED = 15
 
 DIRECTION_VALUES = ['left', 'right', 'up', 'down']
 
 class GameWindowStates(Enum):
+    """ Represents the different screens that take up the entire main window. """
     START = 0
     PLAYING = 1
     END = 2
     EXIT = 3
 
 class GameEndStates(Enum):
+    """ This enum is used to determine which end screen to render when the game window state is END."""
     PLAYING = -1
     BOTH_LOSE = 0
     P1_LOSE = 1
@@ -54,6 +60,7 @@ class GameEndStates(Enum):
     
 
 class GameModes(Enum):
+    """ When the game window state is PLAYING, this enum is used to determine which game mode to run. """
     NOT_SELECTED = -1
     CLASSIC = 0
     PVP = 1
