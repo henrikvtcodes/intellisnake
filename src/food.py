@@ -1,5 +1,7 @@
 import random
 
+from constants import Sizes
+
 def gen_food_position(width: int, height: int, allow_edge = True) -> tuple[int, int]:
   """Generates a random position for the food to be placed. By setting allow_edge to False, the food will not be placed on the edge of the screen."""
   
@@ -9,5 +11,8 @@ def gen_food_position(width: int, height: int, allow_edge = True) -> tuple[int, 
   else:
     food_x = random.randint(1, width - 1)
     food_y = random.randint(1, height - 1)
+  
+  food_x = food_x - food_x % Sizes.SNAKE_BLOCK
+  food_y = food_y - food_y % Sizes.SNAKE_BLOCK
   
   return (food_x, food_y)
