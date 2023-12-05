@@ -1,5 +1,5 @@
 import pygame
-from constants import Sizes
+from constants import Sizes, GameWindowStates, GameModes, GameEndStates
 
 """
 ----- Init File -----
@@ -17,5 +17,10 @@ game_display = pygame.Surface((Sizes.SCREEN_WIDTH, Sizes.GAME_DISPLAY_HEIGHT))
 pygame.display.set_caption("Intellisnake")
 
 pygame.display.update()
+
+class GameStateContainer():
+    window_state: GameWindowStates = GameWindowStates.START
+    game_mode: GameModes = GameModes.NOT_SELECTED
+    end_state: GameEndStates = GameEndStates.PLAYING
 
 clock = pygame.time.Clock()
