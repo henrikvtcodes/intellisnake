@@ -44,3 +44,18 @@ source .venv/bin/activate
 ```sh
 pip install -r requirements.txt
 ```
+
+### Adding Packages
+
+1. Install packages
+
+```sh
+pip install <package>
+```
+
+2. Delete and recreate `requirements.txt`
+
+```sh
+# Does not work on Windows
+rm -f requirements.txt && pip freeze > requirements.txt
+```
