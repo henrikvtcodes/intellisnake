@@ -38,7 +38,7 @@ class Sizes():
     # SNAKE_BLOCK = math.gcd(SCREEN_WIDTH, SCREEN_HEIGHT) / 10
     SNAKE_BLOCK = 40
 
-SNAKE_SPEED = 15
+SNAKE_SPEED = 8
 
 DIRECTION_VALUES = ['left', 'right', 'up', 'down']
 
