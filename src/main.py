@@ -8,6 +8,9 @@ from gamemodes.pvp import pvp_mode
 from init import GameStateContainer, clock, window
 from constants import GameWindowStates, GameModes, GameEndStates, SNAKE_SPEED, Colors
 import screens
+import time
+
+first_run = False
 
 # the part that we actually run.
 if __name__ == "__main__":
@@ -19,13 +22,22 @@ if __name__ == "__main__":
         if GameStateContainer.window_state == GameWindowStates.START:
             # Render the start screen, and get the widgets that are on it so we can call their listen methods
             widgets = screens.start()
+            
 
             # Make sure that the buttons on the start screen work properly
             for widget in widgets:
                 widget.listen(events)
 
             # Only start screen uses widgets so we only need to update pygame_widgets when we render the start screen
-            pygame_widgets.update(pygame.event.get())
+            
+            pygame_widgets.update(events)
+            
+            """ Sleep for 100ms to prevent race condition bug. 
+            Thank you Clayton for finding this bug, and stopping my (Henrik) descent into .
+            """
+            if first_run:
+                time.sleep(0.1)
+                first_run = False
 
         elif GameStateContainer.window_state == GameWindowStates.PLAYING:
             # If the window state is playing, then start the respective game
@@ -61,6 +73,7 @@ if __name__ == "__main__":
                         GameStateContainer.window_state = GameWindowStates.START
                         GameStateContainer.game_mode = GameModes.NOT_SELECTED
                         print("RETURNING TO START SCREEN")
+                        first_run = True
                     elif event.key == pygame.K_r:
                         GameStateContainer.window_state = GameWindowStates.PLAYING
                         GameStateContainer.end_state = GameEndStates.PLAYING
