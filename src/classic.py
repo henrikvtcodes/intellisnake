@@ -8,6 +8,7 @@ import random
 from constants import Fonts, Colors, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, DIRECTION_VALUES
 import init as globals
 from draw_fns import draw_snake, draw_message, draw_score
+from images import *
 
 def start_classic():
   # sets the window state to playing
@@ -95,7 +96,7 @@ def classic_mode():
           y1_change = Sizes.SNAKE_BLOCK
     
     #checks if the snake is out of bounds
-    if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 == 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 == 0:
+    if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 < 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 < 0:
       game_close = True
     
     # changes the snake positions
@@ -103,7 +104,7 @@ def classic_mode():
     snake_y1 += y1_change
     # draws the background and food
     globals.window.fill(Colors.BACKGROUND)
-    pygame.draw.rect(globals.window, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
+    globals.window.blit(grape_image, (food_x, food_y))
 
     # creates a list for the snake head
     # and appends that list to the list containg

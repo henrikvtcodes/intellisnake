@@ -4,6 +4,7 @@ import numpy as np
 from food import gen_food_position
 import random
 from constants import Fonts, Colors, GameEndStates, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, DIRECTION_VALUES
+from images import *
 
 import init as globals
 
@@ -159,7 +160,7 @@ def pvp_mode():
 
     # draws the background and food
     globals.window.fill(Colors.BACKGROUND)
-    pygame.draw.rect(globals.window, Colors.FOOD, [food_x, food_y, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
+    globals.window.blit(grape_image, (food_x, food_y))
 
     # creates a list for the snake head
     # and appends that list to the list containg

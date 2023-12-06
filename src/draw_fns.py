@@ -1,11 +1,14 @@
 import pygame
 import init as globals
 from constants import Colors, Sizes, Fonts
+from images import *
+
 
 # Draws a snake
 def draw_snake(snake_size: int, color, snake_list):
   for x in snake_list:
-    pygame.draw.rect(globals.window, color, [x[0], x[1], snake_size, snake_size])
+    # pygame.draw.rect(globals.window, color, [x[0], x[1], snake_size, snake_size])
+    globals.window.blit(snake_body, (x[0], x[1]))
 
 # displays the message for the losing screen
 def draw_message(msg: str, color: tuple[int, int, int]):
