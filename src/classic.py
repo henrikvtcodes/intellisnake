@@ -35,6 +35,8 @@ def classic_mode():
   x1_change = 0
   y1_change = 0
 
+  direction = 'right'
+
   snake_list = []
   snake_length = 1
 
@@ -85,15 +87,19 @@ def classic_mode():
         if event.key == pygame.K_LEFT or event.key == pygame.K_a:
           x1_change = -Sizes.SNAKE_BLOCK
           y1_change = 0
+          direction = 'left'
         elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
           x1_change = Sizes.SNAKE_BLOCK
           y1_change = 0
+          direction = 'right'
         elif event.key == pygame.K_UP or event.key == pygame.K_w:
           x1_change = 0
           y1_change = -Sizes.SNAKE_BLOCK
+          direction = 'up'
         elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
           x1_change = 0
           y1_change = Sizes.SNAKE_BLOCK
+          direction = 'down'
     
     #checks if the snake is out of bounds
     if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 < 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 < 0:
@@ -126,7 +132,7 @@ def classic_mode():
         game_close = True
 
     # draws the snake. 
-    draw_snake(Sizes.SNAKE_BLOCK, Colors.SNAKE, snake_list)
+    draw_snake(Sizes.SNAKE_BLOCK, Colors.SNAKE, snake_list, direction, snake_length)
 
     # shows every thing
     pygame.display.update()
