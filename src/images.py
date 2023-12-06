@@ -27,6 +27,14 @@ snake_tail_blue = pygame.transform.smoothscale(snake_tail_blue, (Sizes.SNAKE_BLO
 snake_tail_green = pygame.image.load('assets\snake_tail_green.png').convert_alpha()
 snake_tail_green = pygame.transform.smoothscale(snake_tail_green, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
 
+# Creates the p1 mini head
+snake_head_blue_mini = pygame.image.load('assets\snake_head_blue_mini.png').convert_alpha()
+snake_head_blue_mini = pygame.transform.smoothscale(snake_head_blue_mini, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
+
+# Creates the p2 mini head
+snake_head_green_mini = pygame.image.load('assets\snake_head_green_mini.png').convert_alpha()
+snake_head_green_mini = pygame.transform.smoothscale(snake_head_green_mini, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
+
 # Creates the apple image
 grape_image = pygame.image.load('assets\grape.png').convert_alpha()
 grape_image = pygame.transform.smoothscale(grape_image, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
