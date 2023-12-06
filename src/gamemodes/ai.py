@@ -8,7 +8,7 @@ from images import *
 
 import init as globals
 
-from draw_fns import draw_snake, draw_message
+from draw_fns import draw_snake, draw_message, draw_background
 
 def start_ai():
   # sets the window state to playing
@@ -139,6 +139,7 @@ def ai_mode():
 
     # draws the background and food
     globals.window.fill(Colors.BACKGROUND)
+    draw_background()
     globals.window.blit(grape_image, (food_x, food_y))
 
     # creates a list for the snake head
