@@ -1,12 +1,11 @@
 from pygame import Surface
-from classic import start_classic
 from init import window
 from draw_fns import draw_message
-from constants import Colors, Fonts, Sizes, TITLE_TEXT
-import pygame_widgets as pw
+from constants import Colors, TITLE_TEXT
 from pygame_widgets.button import Button
 
-from pvp import start_pvp
+from gamemodes.pvp import start_pvp
+from gamemodes.classic import start_classic
 
 def score(screen: Surface, score: int):
   raise NotImplementedError()
@@ -42,16 +41,15 @@ def start(screen: Surface = window):
   classic_button.draw()
   
   return pvp_button, classic_button
+
+option_message = """Press Q (Quit), Esc (Return to start), or R (Replay)"""
   
 def player1_lose(screen: Surface = window):
-  draw_message("""Player 2 (Green) snake wins! 
-               Press Q (Quit), Esc (Return to start), or R (Replay)""", Colors.GREENISH)
+  draw_message(f"""Player 2 (Green) snake wins! {option_message}""", Colors.GREENISH)
 
 def player2_lose(screen: Surface = window):
-  draw_message("""Player 1 (Blue) snake wins! 
-               Press Q (Quit), Esc (Return to start), or R (Replay)""", Colors.SNAKE)
+  draw_message(f"""Player 1 (Blue) snake wins! {option_message} """, Colors.SNAKE)
 
 def both_lose(screen: Surface = window):
-  draw_message("""Both snakes lose! 
-               Press Q (Quit), Esc (Return to start), or R (Replay)""", Colors.RED)
+  draw_message(f"""Both snakes lose! {option_message}""", Colors.RED)
   

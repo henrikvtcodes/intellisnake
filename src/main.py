@@ -2,13 +2,11 @@ import pygame
 import pygame_widgets
 import logging
 from pygame.locals import *
-from classic import classic_mode
-from pvp import pvp_mode
+from gamemodes.classic import classic_mode
+from gamemodes.pvp import pvp_mode
 from init import GameStateContainer, clock, window
 from constants import GameWindowStates, GameModes, GameEndStates, SNAKE_SPEED, Colors
 import screens
-
-
 
 # the part that we actually run.
 if __name__ == "__main__":
