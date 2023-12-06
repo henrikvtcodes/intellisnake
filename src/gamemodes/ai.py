@@ -11,6 +11,7 @@ import init as globals
 from draw_fns import draw_snake, draw_message
 
 def start_ai():
+  print("STARTING AI")
   # sets the window state to playing
   # the next time the main loop, well, loops, it will run the function for the gamemode.
   globals.GameStateContainer.window_state = GameWindowStates.PLAYING
@@ -23,7 +24,7 @@ def ai_mode():
   blue_lose = False
   green_lose = False
   both_lose = False
-  print("STARTING AI")
+  print("AI MODE")
   # Generates starting position of both 
   # snakes.
   snake_1 = (Sizes.SCREEN_WIDTH / 2, Sizes.SCREEN_HEIGHT / 2)
