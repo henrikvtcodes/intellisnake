@@ -85,21 +85,25 @@ def classic_mode():
       
       if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT or event.key == pygame.K_a:
-          x1_change = -Sizes.SNAKE_BLOCK
-          y1_change = 0
-          direction = 'left'
+          if not x1_change == Sizes.SNAKE_BLOCK:
+            x1_change = -Sizes.SNAKE_BLOCK
+            y1_change = 0
+            direction = 'left'
         elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-          x1_change = Sizes.SNAKE_BLOCK
-          y1_change = 0
-          direction = 'right'
+          if not x1_change == -Sizes.SNAKE_BLOCK:
+            x1_change = Sizes.SNAKE_BLOCK
+            y1_change = 0
+            direction = 'right'
         elif event.key == pygame.K_UP or event.key == pygame.K_w:
-          x1_change = 0
-          y1_change = -Sizes.SNAKE_BLOCK
-          direction = 'up'
+          if not y1_change == Sizes.SNAKE_BLOCK:
+            x1_change = 0
+            y1_change = -Sizes.SNAKE_BLOCK
+            direction = 'up'
         elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
-          x1_change = 0
-          y1_change = Sizes.SNAKE_BLOCK
-          direction = 'down'
+          if not y1_change == -Sizes.SNAKE_BLOCK:
+            x1_change = 0
+            y1_change = Sizes.SNAKE_BLOCK
+            direction = 'down'
     
     #checks if the snake is out of bounds
     if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 < 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 < 0:

@@ -107,37 +107,45 @@ def pvp_mode():
       
       if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT:
-          x1_change = -Sizes.SNAKE_BLOCK
-          y1_change = 0
-          direction_blue = 'left'
+          if not x1_change == Sizes.SNAKE_BLOCK:
+            x1_change = -Sizes.SNAKE_BLOCK
+            y1_change = 0
+            direction_blue = 'left'
         if event.key == pygame.K_RIGHT:
-          x1_change = Sizes.SNAKE_BLOCK
-          y1_change = 0
-          direction_blue = 'right'
+          if not x1_change == -Sizes.SNAKE_BLOCK:
+            x1_change = Sizes.SNAKE_BLOCK
+            y1_change = 0
+            direction_blue = 'right'
         if event.key == pygame.K_UP:
-          x1_change = 0
-          y1_change = -Sizes.SNAKE_BLOCK
-          direction_blue = 'up'
+          if not y1_change == Sizes.SNAKE_BLOCK:
+            x1_change = 0
+            y1_change = -Sizes.SNAKE_BLOCK
+            direction_blue = 'up'
         if event.key == pygame.K_DOWN:
-          x1_change = 0
-          y1_change = Sizes.SNAKE_BLOCK
-          direction_blue = 'down'
+          if not y1_change == -Sizes.SNAKE_BLOCK:
+            x1_change = 0
+            y1_change = Sizes.SNAKE_BLOCK
+            direction_blue = 'down'
         if event.key == pygame.K_a:
-          x2_change = -Sizes.SNAKE_BLOCK
-          y2_change = 0
-          direction_green = 'left'
+          if not x2_change == Sizes.SNAKE_BLOCK:
+            x2_change = -Sizes.SNAKE_BLOCK
+            y2_change = 0
+            direction_green = 'left'
         if event.key == pygame.K_d:
-          x2_change = Sizes.SNAKE_BLOCK
-          y2_change = 0
-          direction_green = 'right'
+          if not x2_change == -Sizes.SNAKE_BLOCK:
+            x2_change = Sizes.SNAKE_BLOCK
+            y2_change = 0
+            direction_green = 'right'
         if event.key == pygame.K_w:
-          x2_change = 0
-          y2_change = -Sizes.SNAKE_BLOCK
-          direction_green = 'up'
+          if not y2_change == Sizes.SNAKE_BLOCK:
+            x2_change = 0
+            y2_change = -Sizes.SNAKE_BLOCK
+            direction_green = 'up'
         if event.key == pygame.K_s:
-          x2_change = 0
-          y2_change = Sizes.SNAKE_BLOCK
-          direction_green = 'down'
+          if not y2_change == -Sizes.SNAKE_BLOCK:
+            x2_change = 0
+            y2_change = Sizes.SNAKE_BLOCK
+            direction_green = 'down'
     
     # checks if the p1 snake is out of bounds. 
     # assigns win to green if true.
