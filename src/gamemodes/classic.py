@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from food import *
-from constants import Fonts, Colors, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, DIRECTION_VALUES
+from constants import Colors, GameModes, GameWindowStates, Sizes, SNAKE_SPEED
 import init as globals
 from draw_fns import draw_snake, draw_message, draw_score
 from images import *
