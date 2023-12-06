@@ -1,10 +1,6 @@
 import pygame
 from pygame.locals import *
-import numpy as np
-from snake import Snake, Player
 from food import *
-import time
-import random
 from constants import Fonts, Colors, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, DIRECTION_VALUES
 import init as globals
 from draw_fns import draw_snake, draw_message, draw_score
