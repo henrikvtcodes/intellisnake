@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 import numpy as np
 from snake import Snake, Player
+from food import *
 import time
 import random
 from constants import Fonts, Colors, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, DIRECTION_VALUES
@@ -25,6 +26,9 @@ def classic_mode():
   snake_x1 = Sizes.SCREEN_WIDTH / 2
   snake_y1 = Sizes.SCREEN_HEIGHT / 2
 
+  snake_x1 -= snake_x1 % Sizes.SNAKE_BLOCK
+  snake_y1 -= snake_y1 % Sizes.SNAKE_BLOCK
+
   # This is what decides how far the snake 
   # moves.
   x1_change = 0
@@ -34,8 +38,7 @@ def classic_mode():
   snake_length = 1
 
   # generates a starting apple position.
-  food_x = round(random.randrange(0, Sizes.SCREEN_WIDTH - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
-  food_y = round(random.randrange(0, Sizes.SCREEN_HEIGHT - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+  food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
 
   # continues as long as the game isn't over.
   # yeah.
@@ -130,8 +133,7 @@ def classic_mode():
     # if the snake has the food, generates
     # a new food positon and grows the snake
     if snake_x1 == food_x and snake_y1 == food_y:
-      food_x = round(random.randrange(0, Sizes.SCREEN_WIDTH - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
-      food_y = round(random.randrange(0, Sizes.SCREEN_HEIGHT - Sizes.SNAKE_BLOCK) / 10.0) * 10.0
+      food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
       snake_length += 1
 
     # makes time pass.
