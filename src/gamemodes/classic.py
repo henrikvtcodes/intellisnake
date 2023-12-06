@@ -3,7 +3,7 @@ from pygame.locals import *
 from food import *
 from constants import Fonts, Colors, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, DIRECTION_VALUES, MAX_SCORE
 import init as globals
-from draw_fns import draw_snake, draw_message, draw_score
+from draw_fns import draw_snake, draw_message, draw_score, draw_background
 from images import *
 
 def start_classic():
@@ -112,8 +112,10 @@ def classic_mode():
     # changes the snake positions
     snake_x1 += x1_change
     snake_y1 += y1_change
+    
     # draws the background and food
     globals.window.fill(Colors.BACKGROUND)
+    draw_background()
     globals.window.blit(grape_image, (food_x, food_y))
 
     # creates a list for the snake head

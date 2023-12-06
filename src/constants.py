@@ -13,6 +13,7 @@ class Colors():
     RED = (255, 0, 0)
     
     BACKGROUND = (255, 112, 205)
+    BACKGROUND_SQUARES = (205, 62, 155)
     SNAKE = (90, 196, 255)
     FOOD = (200, 0, 200)
     GREENISH = (52, 235, 134)
