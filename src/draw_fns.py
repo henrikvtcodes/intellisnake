@@ -27,6 +27,17 @@ def draw_snake(snake_size: int, color, snake_list, direction, snake_length):
     head = pygame.transform.rotate(head, 180)
     mini_head = pygame.transform.rotate(mini_head, 180)
 
+  if snake_length > 1:
+    if snake_list[0][0] == snake_list[1][0]:
+      if snake_list[0][1] > snake_list[1][1]:
+        tail = pygame.transform.rotate(tail, 90)
+      else:
+        tail = pygame.transform.rotate(tail, 270)
+    elif snake_list[0][0] > snake_list[1][0]:
+      tail = pygame.transform.rotate(tail, 180)
+    else:
+      tail = pygame.transform.rotate(tail, 0)
+
   f = 1
   for x in snake_list:
     # pygame.draw.rect(globals.window, color, [x[0], x[1], snake_size, snake_size])
@@ -34,6 +45,8 @@ def draw_snake(snake_size: int, color, snake_list, direction, snake_length):
       globals.window.blit(mini_head, (x[0], x[1]))
     elif f == snake_length:
       globals.window.blit(head, (x[0], x[1]))
+    elif f == 1:
+      globals.window.blit(tail, (x[0], x[1]))
     else:
       globals.window.blit(body, (x[0], x[1]))
     f += 1

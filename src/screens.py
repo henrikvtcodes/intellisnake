@@ -15,6 +15,7 @@ def start(screen: Surface = window):
   width = screen.get_width()
   height = screen.get_height()
   # blit title text centered horizontally and at the top of the screen
+  screen.fill(Colors.BACKGROUND)
   screen.blit(TITLE_TEXT, ((width - TITLE_TEXT.get_width()) / 2, 10))
   
   pvp_button = Button(
@@ -22,6 +23,8 @@ def start(screen: Surface = window):
     ((width - 100) / 2), TITLE_TEXT.get_height() + 20, 100, 48,
     text='PVP',
     fontSize=24,
+    inactiveColour = Colors.PEACHY,
+    hoverColour = Colors.WHITE,
     margin=5,
     radius=5,
     onClick=lambda: start_pvp()
@@ -34,6 +37,8 @@ def start(screen: Surface = window):
     ((width - 100) / 2), TITLE_TEXT.get_height() + 100, 100, 48,
     text='Classic',
     fontSize=24,
+    inactiveColour = Colors.PURPLY,
+    hoverColour = Colors.WHITE,
     margin=5,
     radius=5,
     onClick=lambda: start_classic()
@@ -45,6 +50,8 @@ def start(screen: Surface = window):
     text='AI Mode',
     fontSize=24,
     margin=5,
+    inactiveColour = Colors.YELLOWY,
+    hoverColour = Colors.WHITE,
     radius=5,
     onClick=lambda: start_ai()
   )

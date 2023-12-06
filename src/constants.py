@@ -13,10 +13,14 @@ class Colors():
     RED = (255, 0, 0)
     
     BACKGROUND = (255, 112, 205)
-    BACKGROUND_SQUARES = (205, 62, 155)
+    BACKGROUND_SQUARES = (255, 135, 213)
     SNAKE = (90, 196, 255)
-    FOOD = (200, 0, 200)
+    PURPLY = (200, 0, 200)
     GREENISH = (52, 235, 134)
+    PEACHY = (255, 154, 107)
+    YELLOWY = (255, 251, 130)
+    
+
     
 class Fonts():
     STYLE = pygame.font.SysFont(None, 30)
@@ -39,7 +43,7 @@ class Sizes():
     # SNAKE_BLOCK = math.gcd(SCREEN_WIDTH, SCREEN_HEIGHT) / 10
     SNAKE_BLOCK = 40
 
-SNAKE_SPEED = 8
+SNAKE_SPEED = 7
 
 class SnakeDirections(Enum):
     """ This enum is used to determine which direction the snake is moving in. """
