@@ -24,12 +24,10 @@ class Fonts():
 # Global title text object
 TITLE_TEXT = Fonts.SCORE_FONT.render("Intellisnake", True, Colors.WHITE)
 
-
 class Sizes():
-    """ This class contains all the dimensions for the game."""
+    """ This class contains all the dimensions for the game. DO NOT CHANGE, GAME WILL BREAK."""
     SCREEN_WIDTH = 1000
     SCREEN_HEIGHT = 600
-    """ Screen Sizes (width,height): (640, 480), (800, 600), (1024, 768), (1280, 720)"""
     
     SCORE_DISPLAY_HEIGHT = SCREEN_HEIGHT // 10
     GAME_DISPLAY_HEIGHT = SCREEN_HEIGHT - SCORE_DISPLAY_HEIGHT
