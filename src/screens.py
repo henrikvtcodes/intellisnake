@@ -1,4 +1,5 @@
 from pygame import Surface
+from gamemodes.ai import start_ai
 from init import window
 from draw_fns import draw_message
 from constants import Colors, TITLE_TEXT
@@ -38,9 +39,19 @@ def start(screen: Surface = window):
     onClick=lambda: start_classic()
   )
   
+  ai_button = Button(
+    screen,
+    ((width - 100) / 2), TITLE_TEXT.get_height() + 220, 100, 48,
+    text='AI Mode',
+    fontSize=24,
+    margin=5,
+    radius=5,
+    onClick=lambda: start_ai()
+  )
+  
   classic_button.draw()
   
-  return pvp_button, classic_button
+  return pvp_button, classic_button, ai_button
 
 option_message = """Press Q (Quit), Esc (Return to start), or R (Replay)"""
   
