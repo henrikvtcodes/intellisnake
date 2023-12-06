@@ -51,3 +51,12 @@ def draw_message(msg: str, color: tuple[int, int, int]):
 # Do we want to call it elsewhere so there is a constant score?
 def draw_score(score: int): 
   value = Fonts.SCORE_FONT.render("Your Score: " + str(score), True, Colors.GREENISH)
+
+
+def draw_background():
+  even = 0
+  for x in range(0, Sizes.SCREEN_WIDTH, Sizes.SNAKE_BLOCK):
+    for i in range(0, Sizes.SCREEN_HEIGHT, Sizes.SNAKE_BLOCK):
+      if even % 2:
+        pygame.draw.rect(globals.window, Colors.BACKGROUND_SQUARES, [x, i, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK])
+      even += 1
