@@ -1,6 +1,6 @@
 import pygame
 import init as globals
-from constants import Colors, Sizes, Fonts
+from constants import Colors, Sizes, Fonts, SnakeDirections
 from images import *
 
 
@@ -17,13 +17,13 @@ def draw_snake(snake_size: int, color, snake_list, direction, snake_length):
     tail = snake_tail_green
     mini_head = snake_head_green_mini
 
-  if direction == 'up':
+  if direction == 'up' or direction == SnakeDirections.UP:
     head = pygame.transform.rotate(head, 90)
     mini_head = pygame.transform.rotate(mini_head, 90)
-  elif direction == 'down':
+  elif direction == 'down' or direction == SnakeDirections.DOWN:
     head = pygame.transform.rotate(head, 270)
     mini_head = pygame.transform.rotate(mini_head, 270)
-  elif direction == 'left':
+  elif direction == 'left' or direction == SnakeDirections.LEFT:
     head = pygame.transform.rotate(head, 180)
     mini_head = pygame.transform.rotate(mini_head, 180)
 

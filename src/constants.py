@@ -26,9 +26,11 @@ class Fonts():
 TITLE_TEXT = Fonts.SCORE_FONT.render("Intellisnake", True, Colors.WHITE)
 
 class Sizes():
-    """ This class contains all the dimensions for the game. DO NOT CHANGE, GAME WILL BREAK."""
+    """ This class contains all the dimensions for the game."""
     SCREEN_WIDTH = 1000
+    """ DO NOT CHANGE SCREEN WIDTH, GAME WILL BREAK. """
     SCREEN_HEIGHT = 600
+    """ DO NOT CHANGE SCREEN HEIGHT, GAME WILL BREAK. """
     
     SCORE_DISPLAY_HEIGHT = SCREEN_HEIGHT // 10
     GAME_DISPLAY_HEIGHT = SCREEN_HEIGHT - SCORE_DISPLAY_HEIGHT
@@ -39,9 +41,13 @@ class Sizes():
 
 SNAKE_SPEED = 8
 
+class SnakeDirections(Enum):
+    """ This enum is used to determine which direction the snake is moving in. """
+    LEFT = "left"
+    RIGHT = "right"
+    UP = "up"
+    DOWN = "down"
 MAX_SCORE = (Sizes.SCREEN_HEIGHT // Sizes.SNAKE_BLOCK) * (Sizes.SCREEN_WIDTH // Sizes.SNAKE_BLOCK)
-
-DIRECTION_VALUES = ['left', 'right', 'up', 'down']
 
 class GameWindowStates(Enum):
     """ Represents the different screens that take up the entire main window. """
@@ -66,3 +72,7 @@ class GameModes(Enum):
     CLASSIC = 0
     PVP = 1
     AI = 2
+
+
+for i in SnakeDirections:
+    print(i)
