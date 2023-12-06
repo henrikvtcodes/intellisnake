@@ -12,6 +12,7 @@ def score(screen: Surface, score: int):
   raise NotImplementedError()
 
 def start(screen: Surface = window):
+  screen.fill(Colors.BLACK)
   width = screen.get_width()
   height = screen.get_height()
   # blit title text centered horizontally and at the top of the screen

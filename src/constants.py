@@ -49,28 +49,24 @@ MAX_SCORE = (Sizes.SCREEN_HEIGHT // Sizes.SNAKE_BLOCK) * (Sizes.SCREEN_WIDTH // 
 
 class GameWindowStates(Enum):
     """ Represents the different screens that take up the entire main window. """
-    START = 0
-    PLAYING = 1
-    END = 2
-    EXIT = 3
+    START = "start"
+    PLAYING = "playing"
+    END = "end"
+    EXIT = "exit"
 
 class GameEndStates(Enum):
     """ This enum is used to determine which end screen to render when the game window state is END."""
-    PLAYING = -1
-    BOTH_LOSE = 0
-    P1_LOSE = 1
-    P2_LOSE = 2
-    P1_WIN = 3
-    P2_WIN = 4
+    PLAYING = "playing"
+    BOTH_LOSE = "both_lose"
+    P1_LOSE = "p1_lose"
+    P2_LOSE = "p2_lose"
+    P1_WIN = "p1_win"
+    P2_WIN = "p2_win"
     
 
 class GameModes(Enum):
     """ When the game window state is PLAYING, this enum is used to determine which game mode to run. """
-    NOT_SELECTED = -1
-    CLASSIC = 0
-    PVP = 1
-    AI = 2
-
-
-for i in SnakeDirections:
-    print(i)
+    NOT_SELECTED = "not_selected"
+    CLASSIC = "classic"
+    PVP = "pvp"
+    AI = "ai"

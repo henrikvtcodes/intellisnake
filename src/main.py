@@ -51,22 +51,23 @@ if __name__ == "__main__":
         # Render screen for Player 2 loss
         screens.player2_lose()
       
+      # End Screen Controls
       for event in events:
+        if event.type == QUIT:
+          GameStateContainer.window_state = GameWindowStates.EXIT
+          pass
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_ESCAPE:
             GameStateContainer.window_state = GameWindowStates.START
-            GameStateContainer.end_state = GameEndStates.PLAYING
             GameStateContainer.game_mode = GameModes.NOT_SELECTED
+            print("RETURNING TO START SCREEN")
           elif event.key == pygame.K_r:
             GameStateContainer.window_state = GameWindowStates.PLAYING
             GameStateContainer.end_state = GameEndStates.PLAYING    
           elif event.key == pygame.K_q:
             GameStateContainer.window_state = GameWindowStates.EXIT
-            GameStateContainer.end_state = GameEndStates.PLAYING
             GameStateContainer.game_mode = GameModes.NOT_SELECTED
-          
-    
-        
+
     # Only main loop events here
     for event in events:
       if event.type == QUIT:
