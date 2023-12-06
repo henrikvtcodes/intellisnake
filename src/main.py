@@ -1,11 +1,14 @@
 import pygame
 import pygame_widgets
+import logging
 from pygame.locals import *
 from classic import classic_mode
 from pvp import pvp_mode
 from init import GameStateContainer, clock, window
 from constants import GameWindowStates, GameModes, GameEndStates, SNAKE_SPEED, Colors
 import screens
+
+
 
 # the part that we actually run.
 if __name__ == "__main__":
@@ -51,15 +54,15 @@ if __name__ == "__main__":
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_ESCAPE:
             GameStateContainer.window_state = GameWindowStates.START
-            GameStateContainer.end_state = GameEndStates.NONE
-            GameStateContainer.game_mode = GameModes.NONE
+            GameStateContainer.end_state = GameEndStates.PLAYING
+            GameStateContainer.game_mode = GameModes.NOT_SELECTED
           elif event.key == pygame.K_r:
             GameStateContainer.window_state = GameWindowStates.PLAYING
-            GameStateContainer.end_state = GameEndStates.NONE    
+            GameStateContainer.end_state = GameEndStates.PLAYING    
           elif event.key == pygame.K_q:
             GameStateContainer.window_state = GameWindowStates.EXIT
-            GameStateContainer.end_state = GameEndStates.NONE
-            GameStateContainer.game_mode = GameModes.NONE
+            GameStateContainer.end_state = GameEndStates.PLAYING
+            GameStateContainer.game_mode = GameModes.NOT_SELECTED
           
     
         
