@@ -6,12 +6,14 @@ from images import *
 
 # Draws a snake
 def draw_snake(snake_size: int, color, snake_list):
+  if color == Colors.SNAKE:
+    img = snake_body_blue
+  else:
+    img = snake_body_green
   for x in snake_list:
     # pygame.draw.rect(globals.window, color, [x[0], x[1], snake_size, snake_size])
-    if color == Colors.SNAKE:
-      globals.window.blit(snake_body_blue, (x[0], x[1]))
-    else:
-      globals.window.blit(snake_body_green, (x[0], x[1]))
+    globals.window.blit(img, (x[0], x[1]))
+    
 
 # displays the message for the losing screen
 def draw_message(msg: str, color: tuple[int, int, int]):
