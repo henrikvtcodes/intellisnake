@@ -46,6 +46,7 @@ class SnakeDirections(Enum):
     RIGHT = "right"
     UP = "up"
     DOWN = "down"
+MAX_SCORE = (Sizes.SCREEN_HEIGHT // Sizes.SNAKE_BLOCK) * (Sizes.SCREEN_WIDTH // Sizes.SNAKE_BLOCK)
 
 class GameWindowStates(Enum):
     """ Represents the different screens that take up the entire main window. """
