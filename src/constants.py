@@ -40,6 +40,8 @@ class Sizes():
 
 SNAKE_SPEED = 8
 
+MAX_SCORE = (Sizes.SCREEN_HEIGHT // Sizes.SNAKE_BLOCK) * (Sizes.SCREEN_WIDTH // Sizes.SNAKE_BLOCK)
+
 DIRECTION_VALUES = ['left', 'right', 'up', 'down']
 
 class GameWindowStates(Enum):
