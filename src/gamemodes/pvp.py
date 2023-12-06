@@ -56,42 +56,6 @@ def pvp_mode():
   # continues as long as the game isn't over.
   # yeah.
   while globals.GameStateContainer.window_state == GameWindowStates.PLAYING:
-
-    # after receiving the lose condition
-    # this occurs, prompting whether or not
-    # the player wants to go again.
-    # We could add a high score save thing 
-    # and/or a main menu option to choose a
-    # new gamemode.
-    # while game_close == True:
-    #   globals.window.fill(Colors.FOOD)
-    #   if blue_lose == True:
-    #     draw_message("Player 2 (Green) snake wins! Press Q-Quit or C-Play again", Colors.GREENISH)
-    #   elif green_lose == True:
-    #     draw_message("Player 1 (Blue) snake wins! Press Q-Quit or C-Play again", Colors.SNAKE)
-    #   else:
-    #     globals.window.fill(Colors.BLACK)
-    #     draw_message("You both lose! Press Q-Quit or C-Play again", Colors.RED)
-      
-    #   pygame.display.update()
-
-    #   #waits for the user to pick an option
-    #   for event in pygame.event.get():
-
-    #     if event.type == pygame.QUIT:
-    #       game_over = True
-    #       game_close = False
-    #       globals.GameStateContainer.window_state = GameWindowStates.END
-
-    #     if event.type == pygame.KEYDOWN:
-    #       if event.key == pygame.K_q:
-    #         game_close = False
-    #         game_over = True
-    #         globals.GameStateContainer.window_state = GameWindowStates.END
-
-    #       if event.key == pygame.K_c:
-    #         pvp_mode()
-
     # if the user clicks or presses a key
     # that does something, that is read here.
     # If they quit, it ends the program, if they

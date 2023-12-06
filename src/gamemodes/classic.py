@@ -41,43 +41,15 @@ def classic_mode():
 
   # continues as long as the game isn't over.
   # yeah.
-  while not game_over:
-
-    # after receiving the lose condition
-    # this occurs, prompting whether or not
-    # the player wants to go again.
-    # We could add a high score save thing 
-    # and/or a main menu option to choose a
-    # new gamemode.
-    while game_close == True:
-      globals.window.fill(Colors.BLACK)
-      draw_message("You lost! Press Q-Quit or C-Play again", Colors.RED)
-      draw_score(snake_length - 1)
-      pygame.display.update()
-
-      #waits for the user to pick an option
-      for event in pygame.event.get():
-
-        if event.type == pygame.QUIT:
-          game_over = True
-          game_close = False
-
-        if event.type == pygame.KEYDOWN:
-          if event.key == pygame.K_q:
-            game_close = False
-            game_over = True
-          if event.key == pygame.K_c:
-            classic_mode()
-
+  while globals.GameStateContainer.window_state == GameWindowStates.PLAYING:
     # if the user clicks or presses a key
     # that does something, that is read here.
     # If they quit, it ends the program, if they
     # hit one of the arrow or wasd keys it sets the
     # direction change.
     for event in pygame.event.get():
-
       if event.type == pygame.QUIT:
-        game_over = True
+        globals.GameStateContainer.window_state = GameWindowStates.EXIT
       
       if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_LEFT or event.key == pygame.K_a:
@@ -104,10 +76,14 @@ def classic_mode():
     # checks to see if the board is full
     if snake_length == MAX_SCORE:
       game_close = True
+    globals.GameStateContainer.window_state = GameWindowStates.END
+
 
     # checks if the snake is out of bounds
     if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 < 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 < 0:
       game_close = True
+    globals.GameStateContainer.window_state = GameWindowStates.END
+
     
     # changes the snake positions
     snake_x1 += x1_change
@@ -136,6 +112,8 @@ def classic_mode():
     for x in snake_list[:-1]:
       if x == snake_head:
         game_close = True
+        globals.GameStateContainer.window_state = GameWindowStates.END
+
 
     # draws the snake. 
     draw_snake(Sizes.SNAKE_BLOCK, Colors.SNAKE, snake_list, direction, snake_length)
@@ -151,12 +129,3 @@ def classic_mode():
 
     # makes time pass.
     globals.clock.tick(SNAKE_SPEED)
-
-  # ends the game once the loop is fully complete
-  pygame.quit()
-#   quit()
-
-# size of the snake square.
-# I figured it was easier to deal
-# in squares to start rather than 
-#starting with the assets.
