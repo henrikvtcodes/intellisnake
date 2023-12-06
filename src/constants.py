@@ -1,8 +1,5 @@
-from typing import Literal
 import pygame
-import math
 from enum import Enum
-import pygame_widgets
 
 pygame.init()
 
@@ -51,6 +48,7 @@ class SnakeDirections(Enum):
     RIGHT = "right"
     UP = "up"
     DOWN = "down"
+
 MAX_SCORE = (Sizes.SCREEN_HEIGHT // Sizes.SNAKE_BLOCK) * (Sizes.SCREEN_WIDTH // Sizes.SNAKE_BLOCK)
 
 class GameWindowStates(Enum):

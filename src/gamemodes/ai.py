@@ -23,7 +23,7 @@ def ai_mode():
   blue_lose = False
   green_lose = False
   both_lose = False
-  
+  print("STARTING AI")
   # Generates starting position of both 
   # snakes.
   snake_1 = (Sizes.SCREEN_WIDTH / 2, Sizes.SCREEN_HEIGHT / 2)
@@ -53,7 +53,7 @@ def ai_mode():
   direction_green: SnakeDirections = 'right'
 
   # generates a starting apple position.
-  food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
+  food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, [], [])
 
   # continues as long as the game isn't over.
   # yeah.
@@ -113,7 +113,6 @@ def ai_mode():
     # assigns win to green if true.
     if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 < 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 < 0:
       print("Out of bounds")
-      game_close = True
       blue_lose = True
       globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
       globals.GameStateContainer.window_state = GameWindowStates.END
@@ -124,7 +123,6 @@ def ai_mode():
     # win to p2 if only this is true. 
     if snake_x2 == Sizes.SCREEN_WIDTH or snake_x2 < 0 or snake_y2 == Sizes.SCREEN_HEIGHT or snake_y2 < 0:
       print(snake_x2, snake_y2)
-      game_close = True
       if blue_lose == True:
         globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
       else:
@@ -190,7 +188,6 @@ def ai_mode():
     for i in snake_list_1[:-1]:
       if i == snake_head_2:
         print("collided with other player")
-        game_close = True
         green_lose = True
         globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
         globals.GameStateContainer.window_state = GameWindowStates.END
@@ -199,7 +196,6 @@ def ai_mode():
     for i in snake_list_2[:-1]:
       if i == snake_head_1:
         print("Collided with other player")
-        game_close = True
         if green_lose == True:
           globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
         else:
@@ -210,8 +206,6 @@ def ai_mode():
       # if they have, sets both to having lost
       if snake_head_1 == snake_head_2:
         print("Head to head")
-        game_close = True
-        both_lose = True
         globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
         globals.GameStateContainer.window_state = GameWindowStates.END
         
@@ -226,10 +220,10 @@ def ai_mode():
     # if the snake has the food, generates
     # a new food positon and grows the snake
     if snake_x1 == food_x and snake_y1 == food_y:
-      food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
+      food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2)
       snake_length_1 += 1
     elif snake_x2 == food_x and snake_y2 == food_y:
-      food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
+      food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2)
       snake_length_2 += 1
 
     # makes time pass.
