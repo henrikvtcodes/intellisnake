@@ -44,6 +44,9 @@ def calc_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponen
         return SnakeDirections.RIGHT
       elif ai_x == max_x:
         return SnakeDirections.LEFT
+      
+  
+  return ai_direction
     
   random_choice_list: list[SnakeDirections] = []
   # Impl Random Move
