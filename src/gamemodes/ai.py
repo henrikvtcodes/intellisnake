@@ -26,6 +26,8 @@ def start_ai():
   globals.GameStateContainer.window_state = GameWindowStates.PLAYING
   globals.GameStateContainer.game_mode = GameModes.AI
 
+frame_count = 0
+
 # loop for playing pvp mode
 def ai_mode():
   game_over = False
@@ -66,10 +68,17 @@ def ai_mode():
 
   # generates a starting apple position.
   food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, [], [])
-
+  
+  global frame_count
+  frame_count = 0
+  
   # continues as long as the game isn't over.
   # yeah.
   while globals.GameStateContainer.window_state == GameWindowStates.PLAYING:
+    global frame_count
+    frame += 1
+    print(f"\nFRAME: {frame_count}")
+    
     for event in pygame.event.get():
 
       if event.type == pygame.QUIT:
