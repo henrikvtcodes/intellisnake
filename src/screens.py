@@ -51,7 +51,7 @@ def start(screen: Surface = window):
   
   ai_button = Button(
     screen,
-    ((width - 100) / 2), TITLE_TEXT.get_height() + 220, 100, 48,
+    ((width - 100) / 2), TITLE_TEXT.get_height() + 180, 100, 48,
     text='AI Mode',
     fontSize=24,
     margin=5,
