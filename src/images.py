@@ -51,7 +51,9 @@ snake_body_blue = pygame.transform.smoothscale(snake_body_blue, (Sizes.SNAKE_BLO
 
 snake_body_green = pygame.transform.smoothscale(snake_body_green, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
 
+snake_head_homescreen = pygame.transform.smoothscale(snake_head_blue, (250, 250))
 snake_head_blue = pygame.transform.smoothscale(snake_head_blue, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
+snake_head_homescreen = pygame.transform.rotate(snake_head_homescreen, 90)
 
 snake_head_green = pygame.transform.smoothscale(snake_head_green, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
 
@@ -63,4 +65,7 @@ snake_head_blue_mini = pygame.transform.smoothscale(snake_head_blue_mini, (Sizes
 
 snake_head_green_mini = pygame.transform.smoothscale(snake_head_green_mini, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
 
+grape_homescreen = pygame.transform.smoothscale(grape_image, (300, 300))
 grape_image = pygame.transform.smoothscale(grape_image, (Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK))
+grape_homescreen_left = pygame.transform.rotate(grape_homescreen, -30)
+grape_homescreen_right = pygame.transform.rotate(grape_homescreen, 30)

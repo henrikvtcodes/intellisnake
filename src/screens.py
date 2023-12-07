@@ -4,6 +4,7 @@ from init import window
 from draw_fns import draw_message
 from constants import Colors, TITLE_TEXT
 from pygame_widgets.button import Button
+from images import *
 
 from gamemodes.pvp import start_pvp
 from gamemodes.classic import start_classic
@@ -17,6 +18,9 @@ def start(screen: Surface = window):
   height = screen.get_height()
   # blit title text centered horizontally and at the top of the screen
   screen.fill(Colors.BACKGROUND)
+  screen.blit(grape_homescreen_left, (550, 120))
+  screen.blit(grape_homescreen_right, (5, 5))
+  screen.blit(snake_head_homescreen, (370, 350))
   screen.blit(TITLE_TEXT, ((width - TITLE_TEXT.get_width()) / 2, 10))
   
   pvp_button = Button(
