@@ -1,5 +1,5 @@
 
-from constants import SnakeDirections
+from constants import SnakeDirections, Sizes
 import random
 
 
@@ -24,10 +24,10 @@ def calc_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponen
     if ai_x == 0:
       if ai_y == 0:
         return SnakeDirections.DOWN
-      elif ai_y == max_x:
+      elif ai_y == max_x - Sizes.SNAKE_BLOCK:
         return SnakeDirections.UP
   elif ai_direction == SnakeDirections.RIGHT:
-    if ai_x == max_x:
+    if ai_x == max_x - Sizes.SNAKE_BLOCK:
       if ai_y == 0:
         return SnakeDirections.DOWN
       elif ai_y == max_x:
@@ -36,13 +36,13 @@ def calc_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponen
     if ai_y == 0:
       if ai_x == 0:
         return SnakeDirections.RIGHT
-      elif ai_x == max_x:
+      elif ai_x == max_x - Sizes.SNAKE_BLOCK:
         return SnakeDirections.LEFT
   elif ai_direction == SnakeDirections.DOWN:
-    if ai_y == max_y:
+    if ai_y == max_y - Sizes.SNAKE_BLOCK:
       if ai_x == 0:
         return SnakeDirections.RIGHT
-      elif ai_x == max_x:
+      elif ai_x == max_x - Sizes.SNAKE_BLOCK:
         return SnakeDirections.LEFT
       
   
