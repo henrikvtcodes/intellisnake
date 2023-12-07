@@ -8,9 +8,23 @@ IntelliSnake is a fun new version of the classic game Snake that comes with feat
 - an algorithmic opponent (not yet developed)
 - Chaos Mode
 
-# Get Started
+## Gamemodes
 
-## VSCode
+### Classic
+
+The snake game that you know and love. Eat grapes like a Roman emperor and grow longer.
+
+### PvP
+
+Ever wanted to play snake with a friend? PvP mode features collision mechanics that allow you to battle it out - who will get the grapes first? Can you cut eachother off and take the win?
+
+### AI Mode
+
+Man Vs. Machine. But, the machine is stupid. Can you outsmart it? Probably.
+
+## Development: Get Started
+
+### VSCode
 
 1. Open Command Palette with
    `Ctrl + Shift + P`
@@ -21,7 +35,7 @@ IntelliSnake is a fun new version of the classic game Snake that comes with feat
 
 ✨You're ready to go! ✨
 
-## Manual
+### Manual
 
 1. Create the Virtual Environment
 
