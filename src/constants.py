@@ -62,6 +62,8 @@ class GameEndStates(Enum):
     """ This enum is used to determine which end screen to render when the game window state is END."""
     PLAYING = "playing"
     BOTH_LOSE = "both_lose"
+    CLASSIC_LOSE = "classic_lose"
+    CLASSIC_WIN = "classic_win"
     P1_LOSE = "p1_lose"
     P2_LOSE = "p2_lose"
     P1_WIN = "p1_win"

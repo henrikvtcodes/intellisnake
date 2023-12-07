@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from food import *
-from constants import Colors, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, MAX_SCORE
+from constants import Colors, GameEndStates, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, MAX_SCORE
 import init as globals
 from draw_fns import draw_snake, draw_message, draw_score, draw_background
 from images import *
@@ -76,13 +76,15 @@ def classic_mode():
     # checks to see if the board is full
     if snake_length == MAX_SCORE:
       game_close = True
-    globals.GameStateContainer.window_state = GameWindowStates.END
+      globals.GameStateContainer.end_state = GameEndStates.CLASSIC_WIN
+      globals.GameStateContainer.window_state = GameWindowStates.END
 
 
     # checks if the snake is out of bounds
     if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 < 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 < 0:
       game_close = True
-    globals.GameStateContainer.window_state = GameWindowStates.END
+      globals.GameStateContainer.end_state = GameEndStates.CLASSIC_LOSE
+      globals.GameStateContainer.window_state = GameWindowStates.END
 
     
     # changes the snake positions
@@ -97,9 +99,7 @@ def classic_mode():
     # creates a list for the snake head
     # and appends that list to the list containg
     # the whole snake
-    snake_head = []
-    snake_head.append(snake_x1)
-    snake_head.append(snake_y1)
+    snake_head = (snake_x1, snake_y1)
     snake_list.append(snake_head)
 
     # deletes the snakes tail so it isn't
@@ -110,8 +110,9 @@ def classic_mode():
     # checks to see if the snake has hit
     # itself, ends the game if it has
     for x in snake_list[:-1]:
-      if x == snake_head:
+      if tuple(x) == snake_head:
         game_close = True
+        globals.GameStateContainer.end_state = GameEndStates.CLASSIC_LOSE
         globals.GameStateContainer.window_state = GameWindowStates.END
 
 
