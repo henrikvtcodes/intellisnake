@@ -148,6 +148,7 @@ def calc_food_strategy(ai_pos: tuple[int, int], ai_direction: SnakeDirections, f
 def next_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponent_pos: tuple[int,int], food_pos: tuple[int, int], max_pos: tuple[int, int] ) -> SnakeDirections:
   """ This function is called on every loop of the AI game mode. It takes in the current position of the AI snake, the direction it's moving in, the position of the opponent snake, the position of the food, and the maximum dimensions of the game window. It then returns the next direction the AI should move. It prioritizes avoiding wall collisions, and then it determines the best approach to get food.
   """
+  print()
   
   ai_x, ai_y = ai_pos
   food_x, food_y = food_pos
