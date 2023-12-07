@@ -6,6 +6,7 @@ from ai_algo import next_ai_move
 from food import gen_food_position
 from constants import Colors, GameEndStates, GameModes, GameWindowStates, Loggers, Sizes, SNAKE_SPEED, SnakeDirections
 from images import *
+from ai_algo import prev_food_pos, current_food_strategy, FoodStrategy
 
 import init as globals
 
@@ -75,8 +76,7 @@ def ai_mode():
   # continues as long as the game isn't over.
   # yeah.
   while globals.GameStateContainer.window_state == GameWindowStates.PLAYING:
-    global frame_count
-    frame += 1
+    frame_count += 1
     print(f"\nFRAME: {frame_count}")
     
     for event in pygame.event.get():
@@ -146,7 +146,7 @@ def ai_mode():
     # win to p2 if only this is true. 
     if snake_x2 == Sizes.SCREEN_WIDTH or snake_x2 < 0 or snake_y2 == Sizes.SCREEN_HEIGHT or snake_y2 < 0:
       print("Game(AI): Out of bounds")
-      print("\n END GAME RESULT")
+      print("\nEND GAME RESULT")
       print(f"AI SNAKE - X {snake_x2} Y {snake_y2}")
       print(f"HUMAN SNAKE - X {snake_x1} Y {snake_y1}")
       if blue_lose == True:
@@ -248,7 +248,11 @@ def ai_mode():
     # a new food positon and grows the snake
     if snake_x1 == food_x and snake_y1 == food_y:
       print("Game(Food): Human Player Consumed Food")
-      food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2)
+      new_food_pos = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2)
+      food_x, food_y = new_food_pos
+      # Force AI to recalculate food strategy
+      current_food_strategy = FoodStrategy.NONE
+      
       snake_length_1 += 1
     elif snake_x2 == food_x and snake_y2 == food_y:
       print("Game(Food): AI Player Consumed Food")
