@@ -40,7 +40,7 @@ class Sizes():
     # SNAKE_BLOCK = math.gcd(SCREEN_WIDTH, SCREEN_HEIGHT) / 10
     SNAKE_BLOCK = 40
 
-SNAKE_SPEED = 7
+SNAKE_SPEED = 3
 
 class SnakeDirections(Enum):
     """ This enum is used to determine which direction the snake is moving in. """

@@ -93,6 +93,9 @@ def ai_mode():
             direction_blue = SnakeDirections.DOWN
         
         # TODO: Insert Call to generate AI move here
+        # max_coords = (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
+        # print(f"MAX_POS: X {max_coords[0]} Y {max_coords[1]}")
+        
         ai_move = calc_ai_move((snake_x2, snake_y2), direction_green, (snake_x1, snake_y1), (food_x, food_y), (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT))
         
         if ai_move == SnakeDirections.LEFT:
@@ -129,7 +132,8 @@ def ai_mode():
     # removes win from p1 if both are true, gives
     # win to p2 if only this is true. 
     if snake_x2 == Sizes.SCREEN_WIDTH or snake_x2 < 0 or snake_y2 == Sizes.SCREEN_HEIGHT or snake_y2 < 0:
-      print(snake_x2, snake_y2)
+      print(f"AI SNAKE - X {snake_x2} Y {snake_y2}")
+      print(f"HUMAN SNAKE - X {snake_x1} Y {snake_y1}")
       if blue_lose == True:
         globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
       else:
