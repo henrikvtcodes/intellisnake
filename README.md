@@ -73,3 +73,7 @@ pip install <package>
 # Does not work on Windows
 rm -f requirements.txt && pip freeze > requirements.txt
 ```
+
+## Credits and Citations
+
+- **Initial Game Inspiration:** https://www.edureka.co/blog/snake-game-with-pygame/
