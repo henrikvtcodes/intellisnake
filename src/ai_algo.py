@@ -20,14 +20,14 @@ def calc_food_strategy(ai_pos: tuple[int, int], ai_direction: SnakeDirections, f
   global prev_food_pos
   global current_food_strategy
   
-  if food_pos != prev_food_pos:
+  if (food_pos != prev_food_pos) or (ai_pos == food_pos):
     """ If the food's location has changed (i.e. been eated by the ai or the other snake) since we were last tracking it, then we should reset the food tracking strategy."""
     current_food_strategy = FoodStrategy.NONE
+    print(f"AI(Food): Food position changed - New food position is {food_pos} from {prev_food_pos}")
     prev_food_pos = food_pos
-    if prev_food_pos:
-      print(f"AI(Food): Food position changed - New food position is {food_pos}")
-    else:
-      print(f"AI(Food): Setting initial food position to {food_pos}")
+  else:
+    print(f"AI(Food): Food position unchanged. FOOD {food_pos} PREV_FOOD {prev_food_pos}")
+  
     
   ai_x, ai_y = ai_pos
   food_x, food_y = food_pos
@@ -63,6 +63,7 @@ def calc_food_strategy(ai_pos: tuple[int, int], ai_direction: SnakeDirections, f
     print("AI(Food): Determining Vertical Align")
     if ai_y == food_y:
       """ If we're aligned vertically with the food, then we should try to approach it. """
+      print("AI(Food): Vertical Align Found")
       if ai_x < food_x:
         current_food_strategy = FoodStrategy.APPROACH
         return SnakeDirections.RIGHT
@@ -70,6 +71,7 @@ def calc_food_strategy(ai_pos: tuple[int, int], ai_direction: SnakeDirections, f
         current_food_strategy = FoodStrategy.APPROACH
         return SnakeDirections.LEFT
       else:
+        print("AI(Food): Vertical Align Found - no direction change needed")
         return ai_direction
       
   # ------------ TEST HORIZONTAL ALIGNMENT ------------
@@ -77,6 +79,7 @@ def calc_food_strategy(ai_pos: tuple[int, int], ai_direction: SnakeDirections, f
     print("AI(Food): Determining Horizontal Align")
     if ai_x == food_x:
       """ If we're aligned horizontally with the food, then we should try to approach it vertically. Otherwise, just keep moving."""
+      print("AI(Food): Horizontal Align Found")
       if ai_y < food_y:
         current_food_strategy = FoodStrategy.APPROACH
         return SnakeDirections.DOWN
@@ -84,16 +87,19 @@ def calc_food_strategy(ai_pos: tuple[int, int], ai_direction: SnakeDirections, f
         current_food_strategy = FoodStrategy.APPROACH
         return SnakeDirections.UP
       else:
+        print("AI(Food): Horizontal Align Found - no direction change needed")
         return ai_direction
   
   # ------------ CHECK APPROACH POSITION ------------
   elif current_food_strategy == FoodStrategy.APPROACH:
     print("AI(Food): Approaching Food")
     if ai_x == food_x and ai_y == food_y:
+      print("AI(Food): Food Consumed")
       """If we are on top of the food, reset the food strategy and return the current direction."""
       current_food_strategy = FoodStrategy.NONE
       return ai_direction
     else:
+      print("AI(Food): Food Approach Continue")
       return ai_direction
     
   # ------------ CATCH-ALL: In case the  ------------
@@ -114,47 +120,62 @@ def next_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponen
   
   direction_for_food = calc_food_strategy(ai_pos, ai_direction, food_pos)
   
-  """ Make sure we don't suicide into the wall """
-  if ai_y <= Sizes.SNAKE_BLOCK or ai_y >= max_y:
-    print("AI(V-Collision): Incoming Vertical (Top/Bottom Wall) Collision")
+  """ Make sure we don't crash into the wall """
+  if (ai_y <= Sizes.SNAKE_BLOCK) or (ai_y >= max_y):
+    print(f"AI(V-Collision): Incoming Vertical (Top/Bottom Wall) Collision - Moving {ai_direction.value}")
     if ai_direction == SnakeDirections.UP:
       result = direction_for_food
-      if ai_x == 0:
+      if ai_x <= Sizes.SNAKE_BLOCK:
         result = SnakeDirections.RIGHT
       elif ai_x >= max_x:
         result =  SnakeDirections.LEFT
-      print(f"AI(V-Collision): (UP) Collision Avoidance, Moving {result.value}")
+        
+      if result == direction_for_food:
+        print(f"AI(V-Collision): (DN) No Avoidance, Moving {result.value}")
+      else:
+        print(f"AI(V-Collision): (DN) Collision Avoidance, Moving {result.value}")
       return result
     elif ai_direction == SnakeDirections.DOWN:
       result = direction_for_food
-      if ai_x == 0:
+      if ai_x <= Sizes.SNAKE_BLOCK:
         result =  SnakeDirections.RIGHT
       elif ai_x >= max_x:
         result =  SnakeDirections.LEFT
-      print(f"AI(V-Collision): (DN) Collision Avoidance, Moving {result.value}")
+        
+      if result == direction_for_food:
+        print(f"AI(V-Collision): (DN) No Avoidance, Moving {result.value}")
+      else:
+        print(f"AI(V-Collision): (DN) Collision Avoidance, Moving {result.value}")
       return result
     else:
       pass
   elif ai_x <= Sizes.SNAKE_BLOCK or ai_x >= max_x:
-    print("AI(H-Collision): Incoming Horizontal (Left/Right Wall) Wall Collision")
+    print(f"AI(H-Collision): Incoming Horizontal (Left/Right Wall) Wall Collision - Moving {ai_direction.value}")
     if ai_direction == SnakeDirections.LEFT:
       result = direction_for_food
-      if ai_y == 0:
+      if ai_y <= Sizes.SNAKE_BLOCK:
         result = SnakeDirections.DOWN
       elif ai_y >= max_y:
         result =  SnakeDirections.UP
-      print(f"AI(H-Collision): (L) Collision Avoidance, Moving {result.value}")
+      if result == direction_for_food:
+        print(f"AI(H-Collision): (L) No Avoidance, Moving {result.value}")
+      else:
+        print(f"AI(H-Collision): (L) Collision Avoidance, Moving {result.value}")
       return result
     elif ai_direction == SnakeDirections.RIGHT:
       result = direction_for_food
-      if ai_y == 0:
+      if ai_y <= Sizes.SNAKE_BLOCK:
         result =  SnakeDirections.DOWN
       elif ai_y >= max_y:
         result =  SnakeDirections.UP
-      print(f"AI(H-Collision): (R) Collision Avoidance, Moving {result.value}")
+      if result == direction_for_food:
+        print(f"AI(H-Collision): (R) No Avoidance, Moving {result.value}")
+      else:
+        print(f"AI(H-Collision): (R) Collision Avoidance, Moving {result.value}")
       return result
     else:
       pass
     
   print(f"CALCULATED FOOD DIRECTION: {direction_for_food} ")
+  
   return direction_for_food
