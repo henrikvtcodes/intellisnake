@@ -47,6 +47,28 @@ def avoid_vertical_wall_collision(ai_pos: tuple[int, int], ai_direction: SnakeDi
   
   return None
   
+class FoodStrategy(Enum):
+  """ This enum allows us to determine how the AI has been driving towards food. """
+  VERTICAL_ALIGN_UP = "vertical_align_up"
+  VERTICAL_ALIGN_DOWN = "vertical_align_down"
+  HORIZONTAL_ALIGN_LEFT = "horizontal_align_left"
+  HORIZONTAL_ALIGN_RIGHT = "horizontal_align_right"
+  
+  APPROACH = "approach"
+  """ Approach is used when the AI is aligned with and moving toward the food. This tells us, don't change direction or food strategy. """
+  NONE = "none"
+
+current_food_strategy = FoodStrategy.NONE
+prev_food_pos: tuple[int, int] = None
+
+def calc_food_strategy(ai_pos: tuple[int, int], ai_direction: SnakeDirections, food_pos: tuple[int, int]) -> SnakeDirections:
+  if food_pos != prev_food_pos:
+    """ If the food's location has changed (i.e. been eated by the ai or the other snake) since we were last tracking it, then we should reset the food tracking strategy."""
+    current_food_strategy = FoodStrategy.NONE
+    prev_food_pos = food_pos
+    
+  ai_x, ai_y = ai_pos
+  food_x, food_y = food_pos
 
 def calc_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponent_pos: tuple[int,int], food_pos: tuple[int, int], max_pos: tuple[int, int] ) -> SnakeDirections:
   """
