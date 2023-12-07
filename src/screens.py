@@ -66,7 +66,13 @@ def start(screen: Surface = window):
   return pvp_button, classic_button, ai_button
 
 option_message = """Press Q (Quit), Esc (Return to start), or R (Replay)"""
-  
+
+def classic_lose(screen: Surface = window):
+  draw_message(f"""You lose! {option_message}""", Colors.RED)
+
+def classic_win(screen: Surface = window):
+  draw_message(f"""You win! {option_message}""", (0, 255, 0))
+
 def player1_lose(screen: Surface = window):
   draw_message(f"""Player 2 (Green) snake wins! {option_message}""", Colors.GREENISH)
 
