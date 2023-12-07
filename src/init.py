@@ -21,12 +21,14 @@ pygame.display.set_caption("Intellisnake")
 pygame.display.update()
 
 
-class GameStateContainer():
-    """ This is a global class that can be referenced anywhere to make all requisite information available."""
+class GameStateContainer:
+    """This is a global class that can be referenced anywhere to make all requisite information available."""
+
     window_state: GameWindowStates = GameWindowStates.START
     game_mode: GameModes = GameModes.NOT_SELECTED
     end_state: GameEndStates = GameEndStates.PLAYING
-    
+
     escape_pressed: bool = False
+
 
 clock = pygame.time.Clock()
