@@ -1,14 +1,17 @@
+import logging
 import pygame
 from pygame.locals import *
 import numpy as np
-from ai_algo import calc_ai_move
+from ai_algo import next_ai_move
 from food import gen_food_position
-from constants import Colors, GameEndStates, GameModes, GameWindowStates, Sizes, SNAKE_SPEED, SnakeDirections
+from constants import Colors, GameEndStates, GameModes, GameWindowStates, Loggers, Sizes, SNAKE_SPEED, SnakeDirections
 from images import *
 
 import init as globals
 
 from draw_fns import draw_snake, draw_message, draw_background
+
+game_logger = logging.getLogger(Loggers.GAME.value)
 
 def start_ai():
   if globals.GameStateContainer.escape_pressed:
@@ -57,7 +60,9 @@ def ai_mode():
   snake_length_2 = 1
 
   direction_blue: SnakeDirections = 'right'
-  direction_green: SnakeDirections = 'right'
+  # Since the AI Algorithm relies on the SnakeDirection enum, initial direction must be set using it
+  # Otherwise the AI algorith just can't make a decision
+  direction_green: SnakeDirections = SnakeDirections.RIGHT
 
   # generates a starting apple position.
   food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, [], [])
@@ -92,11 +97,10 @@ def ai_mode():
             y1_change = Sizes.SNAKE_BLOCK
             direction_blue = SnakeDirections.DOWN
         
-        # TODO: Insert Call to generate AI move here
         # max_coords = (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
         # print(f"MAX_POS: X {max_coords[0]} Y {max_coords[1]}")
         
-        ai_move = calc_ai_move((snake_x2, snake_y2), direction_green, (snake_x1, snake_y1), (food_x, food_y), (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT))
+        ai_move = next_ai_move((snake_x2, snake_y2), direction_green, (snake_x1, snake_y1), (food_x, food_y), (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT))
         
         if ai_move == SnakeDirections.LEFT:
           if not x2_change == Sizes.SNAKE_BLOCK:
