@@ -6,11 +6,11 @@ from gamemodes.ai import ai_mode
 from gamemodes.classic import classic_mode
 from gamemodes.pvp import pvp_mode
 from init import GameStateContainer, clock, window
-from constants import GameWindowStates, GameModes, GameEndStates, SNAKE_SPEED, Colors
+from constants import GameWindowStates, GameModes, GameEndStates, SNAKE_SPEED, Colors, Loggers
 import screens
-import time
 
-first_run = False
+logging.getLogger(Loggers.ALGORITHM.value).setLevel(logging.DEBUG)
+logging.getLogger(Loggers.GAME.value).setLevel(logging.DEBUG)
 
 # the part that we actually run.
 if __name__ == "__main__":

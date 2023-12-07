@@ -5,6 +5,7 @@ from constants import Colors, GameEndStates, GameModes, GameWindowStates, Sizes,
 import init as globals
 from draw_fns import draw_snake, draw_message, draw_score, draw_background
 from images import *
+from sounds import *
 
 def start_classic():
   if globals.GameStateContainer.escape_pressed:
@@ -80,14 +81,14 @@ def classic_mode():
     
     # checks to see if the board is full
     if snake_length == MAX_SCORE:
-      game_close = True
+      pygame.mixer.Sound.play(win)
       globals.GameStateContainer.end_state = GameEndStates.CLASSIC_WIN
       globals.GameStateContainer.window_state = GameWindowStates.END
 
 
     # checks if the snake is out of bounds
     if snake_x1 == Sizes.SCREEN_WIDTH or snake_x1 < 0 or snake_y1 == Sizes.SCREEN_HEIGHT or snake_y1 < 0:
-      game_close = True
+      pygame.mixer.Sound.play(willhelm)
       globals.GameStateContainer.end_state = GameEndStates.CLASSIC_LOSE
       globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -116,7 +117,7 @@ def classic_mode():
     # itself, ends the game if it has
     for x in snake_list[:-1]:
       if tuple(x) == snake_head:
-        game_close = True
+        pygame.mixer.Sound.play(willhelm)
         globals.GameStateContainer.end_state = GameEndStates.CLASSIC_LOSE
         globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -130,6 +131,7 @@ def classic_mode():
     # if the snake has the food, generates
     # a new food positon and grows the snake
     if snake_x1 == food_x and snake_y1 == food_y:
+      pygame.mixer.Sound.play(mlem)
       food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list, [])
       snake_length += 1
 

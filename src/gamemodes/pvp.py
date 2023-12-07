@@ -4,6 +4,7 @@ import numpy as np
 from food import gen_food_position
 from constants import Colors, GameEndStates, GameModes, GameWindowStates, Sizes, SNAKE_SPEED
 from images import *
+from sounds import *
 
 import init as globals
 
@@ -121,6 +122,7 @@ def pvp_mode():
       print("Out of bounds")
       game_close = True
       blue_lose = True
+      
       globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
       globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -187,8 +189,10 @@ def pvp_mode():
         print("Hit self")
         game_close = True
         if blue_lose == True:
+          pygame.mixer.Sound.play(willhelm)
           globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
         else:
+          pygame.mixer.Sound.play(willhelm)
           globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
           
         globals.GameStateContainer.window_state = GameWindowStates.END
@@ -199,6 +203,7 @@ def pvp_mode():
         print("collided with other player")
         game_close = True
         green_lose = True
+        
         globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
         globals.GameStateContainer.window_state = GameWindowStates.END
     
@@ -208,8 +213,10 @@ def pvp_mode():
         print("Collided with other player")
         game_close = True
         if green_lose == True:
+          pygame.mixer.Sound.play(willhelm)
           globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
         else:
+          pygame.mixer.Sound.play(willhelm)
           globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
         globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -233,9 +240,11 @@ def pvp_mode():
     # if the snake has the food, generates
     # a new food positon and grows the snake
     if snake_x1 == food_x and snake_y1 == food_y:
+      pygame.mixer.Sound.play(mlem)
       food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2)
       snake_length_1 += 1
     elif snake_x2 == food_x and snake_y2 == food_y:
+      pygame.mixer.Sound.play(mlem)
       food_x, food_y = gen_food_position(Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2)
       snake_length_2 += 1
 
