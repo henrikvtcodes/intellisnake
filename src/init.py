@@ -26,5 +26,7 @@ class GameStateContainer():
     window_state: GameWindowStates = GameWindowStates.START
     game_mode: GameModes = GameModes.NOT_SELECTED
     end_state: GameEndStates = GameEndStates.PLAYING
+    
+    escape_pressed: bool = False
 
 clock = pygame.time.Clock()

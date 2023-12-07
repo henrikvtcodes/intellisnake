@@ -7,6 +7,11 @@ from draw_fns import draw_snake, draw_message, draw_score, draw_background
 from images import *
 
 def start_classic():
+  if globals.GameStateContainer.escape_pressed:
+    globals.GameStateContainer.window_state = GameWindowStates.START
+    globals.GameStateContainer.escape_pressed = False
+    print("Autoavoid Race Condition: Classic Mode Start Aborted")
+    return
   # sets the window state to playing
   # the next time the main loop, well, loops, it will run the function for the gamemode.
   globals.GameStateContainer.window_state = GameWindowStates.PLAYING

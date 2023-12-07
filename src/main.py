@@ -36,8 +36,7 @@ if __name__ == "__main__":
             Thank you Clayton for finding this bug, and stopping my (Henrik) descent into .
             """
             # if first_run:
-            time.sleep(0.1)
-            first_run = False
+            # time.sleep(1)
 
         elif GameStateContainer.window_state == GameWindowStates.PLAYING:
             # If the window state is playing, then start the respective game
@@ -77,6 +76,7 @@ if __name__ == "__main__":
                         GameStateContainer.window_state = GameWindowStates.START
                         GameStateContainer.game_mode = GameModes.NOT_SELECTED
                         print("RETURNING TO START SCREEN")
+                        GameStateContainer.escape_pressed = True
                         first_run = True
                     elif event.key == pygame.K_r:
                         GameStateContainer.window_state = GameWindowStates.PLAYING
