@@ -141,6 +141,9 @@ def calc_food_strategy(ai_pos: tuple[int, int], ai_direction: SnakeDirections, f
       return ai_direction
     else:
       return ai_direction
+    
+  # ------------ CATCH-ALL: In case th  ------------
+  return ai_direction
 
 def next_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponent_pos: tuple[int,int], food_pos: tuple[int, int], max_pos: tuple[int, int] ) -> SnakeDirections:
   """ This function is called on every loop of the AI game mode. It takes in the current position of the AI snake, the direction it's moving in, the position of the opponent snake, the position of the food, and the maximum dimensions of the game window. It then returns the next direction the AI should move. It prioritizes avoiding wall collisions, and then it determines the best approach to get food.
@@ -160,8 +163,6 @@ def next_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponen
   """ Make sure we don't suicide into the wall """
   if ai_y <= Sizes.SNAKE_BLOCK or ai_x >= max_y:
     print("AI(H-Collision): Incoming Horizontal (Top/Bottom Wall) Collision")
-    horizontal_avoid = avoid_horizontal_wall_collision(ai_pos, ai_direction, (max_x, max_y))
-    # horizontal_avoid can return None, so if it does, that means we should move on to the rest of the algorithm
     if ai_direction == SnakeDirections.UP:
       result = direction_for_food
       if ai_x == 0:
@@ -182,15 +183,24 @@ def next_ai_move(ai_pos: tuple[int, int], ai_direction: SnakeDirections, opponen
       pass
   elif ai_x <= Sizes.SNAKE_BLOCK or ai_x >= max_x:
     print("AI(V-Collision): Incoming Vertical (Left/Right Wall) Wall Collision")
-    vertical_avoid =  avoid_vertical_wall_collision(ai_pos, ai_direction, (max_x, max_y))
-    # vertical_avoid can return None, so if it does, that means we should move on to the rest of the algorithm
-    if vertical_avoid:
-      return vertical_avoid
+    if ai_direction == SnakeDirections.LEFT:
+      result = direction_for_food
+      if ai_y == 0:
+        result = SnakeDirections.DOWN
+      elif ai_y >= max_y:
+        result =  SnakeDirections.UP
+      print(f"AI(V-Collision): (L) Collision Avoidance, Moving {result.value}")
+      return result
+    elif ai_direction == SnakeDirections.RIGHT:
+      result = direction_for_food
+      if ai_y == 0:
+        result =  SnakeDirections.DOWN
+      elif ai_y >= max_y:
+        result =  SnakeDirections.UP
+      print(f"AI(V-Collision): (R) Collision Avoidance, Moving {result.value}")
+      return result
     else:
       pass
-  
-  
+    
   print(f"CALCULATED FOOD DIRECTION: {direction_for_food} ")
-  
   return direction_for_food
-  return SnakeDirections.LEFT
