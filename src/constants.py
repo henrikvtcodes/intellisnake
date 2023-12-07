@@ -76,3 +76,9 @@ class GameModes(Enum):
     CLASSIC = "classic"
     PVP = "pvp"
     AI = "ai"
+
+class Loggers(Enum):
+    ALGORITHM = "algorithm"
+    """ Used to log the algorithm's moves. """
+    GAME = "game"
+    """ Used to log the game updates. """
