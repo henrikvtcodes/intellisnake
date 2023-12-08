@@ -127,7 +127,7 @@ def classic_mode():
         # itself, ends the game if it has
         for x in snake_list[:-1]:
             if tuple(x) == snake_head:
-                pygame.mixer.Sound.play(willhelm)
+                pygame.mixer.Sound.play(bonk)
                 globals.GameStateContainer.end_state = GameEndStates.CLASSIC_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
 

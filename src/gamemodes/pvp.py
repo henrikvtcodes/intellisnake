@@ -129,9 +129,7 @@ def pvp_mode():
             or snake_y1 < 0
         ):
             print("Out of bounds")
-            pygame.mixer.Sound.play(willhelm)
             blue_lose = True
-
             globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
             globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -146,11 +144,9 @@ def pvp_mode():
         ):
             print(snake_x2, snake_y2)
             if blue_lose == True:
-                pygame.mixer.Sound.play(willhelm)
                 globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 pygame.mixer.Sound.play(willhelm)
             else:
-                pygame.mixer.Sound.play(willhelm)
                 globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
                 pygame.mixer.Sound.play(willhelm)
 
@@ -194,7 +190,6 @@ def pvp_mode():
             if x == snake_head_1:
                 print("Hit self")
                 blue_lose = True
-                pygame.mixer.Sound.play(willhelm)
                 globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -215,7 +210,6 @@ def pvp_mode():
             if i == snake_head_2:
                 print("collided with other player")
                 green_lose = True
-                pygame.mixer.Sound.play(willhelm)
                 globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
 

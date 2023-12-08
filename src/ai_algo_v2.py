@@ -1,6 +1,7 @@
 from constants import *
 
-# checks if the given direction will cause the 
+
+# checks if the given direction will cause the
 # ai snake to hit itself or the other snake on the
 # next move
 def check_collison_course(opp_snake, my_snake, x, y, cur_dir):
@@ -14,7 +15,6 @@ def check_collison_course(opp_snake, my_snake, x, y, cur_dir):
     if cur_dir == SnakeDirections.RIGHT:
         x += Sizes.SNAKE_BLOCK
 
-    
     for i in opp_snake:
         if i[0] == x and i[1] == y:
             return True
@@ -26,7 +26,6 @@ def check_collison_course(opp_snake, my_snake, x, y, cur_dir):
 
 # generates the ai's next move
 def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
-
     # sets the possible return values
     up = (0, -Sizes.SNAKE_BLOCK)
     down = (0, Sizes.SNAKE_BLOCK)
@@ -73,7 +72,7 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
         if cur_dir == SnakeDirections.RIGHT:
             # if going right and in the right lower corner
             # moves it up (only option)
-            if oob_down: 
+            if oob_down:
                 return up
             # if going right and in the right upper corner
             elif oob_up:
@@ -87,8 +86,7 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
             # otherwise tries to go towards grape
             else:
                 return desired_y
-        
-    
+
     if oob_left:
         print(cur_dir)
         if cur_dir == SnakeDirections.LEFT:
@@ -121,7 +119,9 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
             elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.LEFT):
                 return right
             # checks if going right will send snake into another snake
-            elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.RIGHT):
+            elif check_collison_course(
+                opp_snake, my_snake, x, y, SnakeDirections.RIGHT
+            ):
                 return left
             # otherwise tries to go towards grape
             else:
@@ -139,12 +139,14 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
             elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.LEFT):
                 return right
             # checks if going right will send snake into another snake
-            elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.RIGHT):
+            elif check_collison_course(
+                opp_snake, my_snake, x, y, SnakeDirections.RIGHT
+            ):
                 return left
             # otherwise tries to go towards grape
             else:
                 return desired_x
-           
+
     # checks if the snakes current course will send it out of bounds
     if check_collison_course(opp_snake, my_snake, x, y, cur_dir):
         # if the snake is going up or down, decides whether to go left or right
@@ -158,12 +160,14 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
             elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.LEFT):
                 return right
             # checks if going right will send snake into another snake
-            elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.RIGHT):
+            elif check_collison_course(
+                opp_snake, my_snake, x, y, SnakeDirections.RIGHT
+            ):
                 return left
             # otherwise tries to go towards grape
             else:
                 return desired_x
-            
+
         # if the snake is going left or right, decides whether to go up or down
         elif cur_dir == SnakeDirections.LEFT or cur_dir == SnakeDirections.RIGHT:
             # makes sure direction change doesn't send snake out of bounds
@@ -214,6 +218,6 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
                 and not oob_down
             ):
                 return down
-    
+
     # if not in danger and no direction change, returns 0, 0
     return (0, 0)

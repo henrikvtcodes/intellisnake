@@ -1,6 +1,9 @@
+import init
 import pygame
 from constants import Sizes
 import platform
+
+pygame.init()
 
 # Windows NTFS paths uses backslashes for some reason, so this code is for loading images on Windows
 if platform.system() == "Windows":
