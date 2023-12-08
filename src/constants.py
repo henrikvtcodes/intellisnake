@@ -43,7 +43,7 @@ class Sizes:
     SNAKE_BLOCK = 40
 
 
-SNAKE_SPEED = 3
+SNAKE_SPEED = 6
 
 
 class SnakeDirections(Enum):

@@ -15,6 +15,7 @@ from constants import (
     Loggers,
 )
 import screens
+from ai_algo_legend import generate_next_move
 
 logging.getLogger(Loggers.ALGORITHM.value).setLevel(logging.DEBUG)
 logging.getLogger(Loggers.GAME.value).setLevel(logging.DEBUG)
