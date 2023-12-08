@@ -1,7 +1,5 @@
-import logging
 import pygame
 from pygame.locals import *
-import numpy as np
 from ai_algo import next_ai_move
 from food import gen_food_position
 from constants import (
@@ -9,20 +7,18 @@ from constants import (
     GameEndStates,
     GameModes,
     GameWindowStates,
-    Loggers,
     Sizes,
     SNAKE_SPEED,
     SnakeDirections,
 )
 from images import *
-from ai_algo import prev_food_pos, current_food_strategy, FoodStrategy
+from ai_algo import FoodStrategy
 from ai_algo_legend import generate_next_move
 
 import init as globals
+from sounds import *
 
 from draw_fns import draw_snake, draw_message, draw_background
-
-game_logger = logging.getLogger(Loggers.GAME.value)
 
 
 def start_ai():
@@ -121,7 +117,7 @@ def ai_mode():
                 # max_coords = (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
                 # print(f"MAX_POS: X {max_coords[0]} Y {max_coords[1]}")
 
-        place_hldr = generate_next_move(
+        ai_move = generate_next_move(
             snake_list_1,
             snake_list_2,
             snake_x2,
@@ -130,9 +126,9 @@ def ai_mode():
             food_y,
             direction_green,
         )
-        if not place_hldr == (0, 0):
-            print(place_hldr)
-            x2_change, y2_change = place_hldr
+        if not ai_move == (0, 0):
+            print(ai_move)
+            x2_change, y2_change = ai_move
 
         if x2_change == Sizes.SNAKE_BLOCK:
             direction_green = SnakeDirections.RIGHT
@@ -152,6 +148,7 @@ def ai_mode():
             or snake_y1 < 0
         ):
             print("Game(Human): Out of bounds")
+            pygame.mixer.Sound.play(willhelm)
             blue_lose = True
             globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
             globals.GameStateContainer.window_state = GameWindowStates.END
@@ -166,6 +163,7 @@ def ai_mode():
             or snake_y2 < 0
         ):
             print("Game(AI): Out of bounds")
+            pygame.mixer.Sound.play(willhelm)
             print("\nEND GAME RESULT")
             print(f"AI SNAKE - X {snake_x2} Y {snake_y2}")
             print(f"HUMAN SNAKE - X {snake_x1} Y {snake_y1}")
@@ -213,6 +211,7 @@ def ai_mode():
         for x in snake_list_1[:-1]:
             if x == snake_head_1:
                 print("Game(Human): Hit self")
+                pygame.mixer.Sound.play(bonk)
                 game_close = True
                 blue_lose = True
                 globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
@@ -221,6 +220,7 @@ def ai_mode():
         for x in snake_list_2[:-1]:
             if x == snake_head_2:
                 print("Game(AI): Hit self")
+                pygame.mixer.Sound.play(bonk)
                 game_close = True
                 if blue_lose == True:
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
@@ -233,6 +233,7 @@ def ai_mode():
         for i in snake_list_1[:-1]:
             if i == snake_head_2:
                 print("Game: Collided with other player")
+                pygame.mixer.Sound.play(bonk)
                 green_lose = True
                 globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
@@ -241,6 +242,7 @@ def ai_mode():
         for i in snake_list_2[:-1]:
             if i == snake_head_1:
                 print("Game: Collided with other player")
+                pygame.mixer.Sound.play(bonk)
                 if green_lose == True:
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 else:
@@ -251,6 +253,7 @@ def ai_mode():
             # if they have, sets both to having lost
             if snake_head_1 == snake_head_2:
                 print("Game: Bonked heads")
+                pygame.mixer.Sound.play(bonk)
                 globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -277,6 +280,7 @@ def ai_mode():
         # a new food positon and grows the snake
         if snake_x1 == food_x and snake_y1 == food_y:
             print("Game(Food): Human Player Consumed Food")
+            pygame.mixer.Sound.play(mlem)
             new_food_pos = gen_food_position(
                 Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2
             )
@@ -287,6 +291,7 @@ def ai_mode():
             snake_length_1 += 1
         elif snake_x2 == food_x and snake_y2 == food_y:
             print("Game(Food): AI Player Consumed Food")
+            pygame.mixer.Sound.play(mlem)
             food_x, food_y = gen_food_position(
                 Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2
             )

@@ -152,8 +152,10 @@ def pvp_mode():
             game_close = True
             if blue_lose == True:
                 globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
+                pygame.mixer.Sound.play(willhelm)
             else:
                 globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
+                pygame.mixer.Sound.play(willhelm)
 
             globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -204,10 +206,10 @@ def pvp_mode():
                 print("Hit self")
                 game_close = True
                 if blue_lose == True:
-                    pygame.mixer.Sound.play(willhelm)
+                    pygame.mixer.Sound.play(bonk)
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 else:
-                    pygame.mixer.Sound.play(willhelm)
+                    pygame.mixer.Sound.play(bonk)
                     globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
 
                 globals.GameStateContainer.window_state = GameWindowStates.END
@@ -228,10 +230,10 @@ def pvp_mode():
                 print("Collided with other player")
                 game_close = True
                 if green_lose == True:
-                    pygame.mixer.Sound.play(willhelm)
+                    pygame.mixer.Sound.play(bonk)
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 else:
-                    pygame.mixer.Sound.play(willhelm)
+                    pygame.mixer.Sound.play(bonk)
                     globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -239,6 +241,7 @@ def pvp_mode():
             # if they have, sets both to having lost
             if snake_head_1 == snake_head_2:
                 print("Head to head")
+                pygame.mixer.Sound.play(bonk)
                 game_close = True
                 both_lose = True
                 globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
