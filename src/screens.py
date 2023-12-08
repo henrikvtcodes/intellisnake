@@ -28,9 +28,9 @@ def start(screen: Surface = window):
 
     pvp_button = Button(
         screen,
-        ((width - 100) / 2),
+        ((width - 125) / 2),
         TITLE_TEXT.get_height() + 20,
-        100,
+        125,
         48,
         text="PVP",
         fontSize=24,
@@ -45,9 +45,9 @@ def start(screen: Surface = window):
 
     classic_button = Button(
         screen,
-        ((width - 100) / 2),
+        ((width - 125) / 2),
         TITLE_TEXT.get_height() + 100,
-        100,
+        125,
         48,
         text="Classic",
         fontSize=24,
@@ -60,9 +60,9 @@ def start(screen: Surface = window):
 
     ai_button = Button(
         screen,
-        ((width - 100) / 2),
+        ((width - 125) / 2),
         TITLE_TEXT.get_height() + 180,
-        100,
+        125,
         48,
         text="AI Mode",
         fontSize=24,
@@ -75,9 +75,9 @@ def start(screen: Surface = window):
 
     god_button = Button(
         screen,
-        ((width - 100) / 2),
+        ((width - 125) / 2),
         TITLE_TEXT.get_height() + 260,
-        100,
+        125,
         48,
         text="God mode",
         fontSize=24,
