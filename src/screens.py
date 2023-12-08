@@ -7,6 +7,7 @@ from pygame_widgets.button import Button
 from images import *
 
 from gamemodes.pvp import start_pvp
+from gamemodes.god_mode import start_god_mode
 from gamemodes.classic import start_classic
 
 
@@ -22,7 +23,7 @@ def start(screen: Surface = window):
     screen.fill(Colors.BACKGROUND)
     screen.blit(grape_homescreen_left, (550, 120))
     screen.blit(grape_homescreen_right, (5, 5))
-    screen.blit(snake_head_homescreen, (370, 350))
+    screen.blit(snake_head_homescreen, (370, 375))
     screen.blit(TITLE_TEXT, ((width - TITLE_TEXT.get_width()) / 2, 10))
 
     pvp_button = Button(
@@ -78,18 +79,20 @@ def start(screen: Surface = window):
         TITLE_TEXT.get_height() + 260,
         100,
         48,
-        text="AI Mode",
+        text="God mode",
         fontSize=24,
         margin=5,
+        textColour = Colors.RED,
         inactiveColour=Colors.BACKGROUND_GOD,
         hoverColour=Colors.WHITE,
         radius=5,
-        onClick=lambda: start_ai(),
+        onClick=lambda: start_god_mode(),
     )
+    god_button.draw()
 
     classic_button.draw()
 
-    return pvp_button, classic_button, ai_button
+    return pvp_button, classic_button, ai_button, god_button
 
 
 option_message = """Press Q (Quit), Esc (Return to start), or R (Replay)"""

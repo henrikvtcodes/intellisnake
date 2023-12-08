@@ -91,3 +91,4 @@ class GameModes(Enum):
     CLASSIC = "classic"
     PVP = "pvp"
     AI = "ai"
+    GOD = 'God'

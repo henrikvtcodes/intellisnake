@@ -16,7 +16,7 @@ from images import *
 from sounds import *
 
 
-def start_classic():
+def start_god_mode():
     if globals.GameStateContainer.escape_pressed:
         globals.GameStateContainer.window_state = GameWindowStates.START
         globals.GameStateContainer.escape_pressed = False
@@ -25,7 +25,7 @@ def start_classic():
     # sets the window state to playing
     # the next time the main loop, well, loops, it will run the function for the gamemode.
     globals.GameStateContainer.window_state = GameWindowStates.PLAYING
-    globals.GameStateContainer.game_mode = GameModes.CLASSIC
+    globals.GameStateContainer.game_mode = GameModes.GOD
 
 
 # The main game outline is here. We could make
@@ -56,7 +56,7 @@ def god_mode():
     food_list = []
     food_list.append([food_x, food_y])
     left1 = pygame.K_LEFT
-    left2 = event.key == pygame.K_a
+    left2 = pygame.K_a
     right1 = pygame.K_RIGHT
     right2 = pygame.K_d
     up1 = pygame.K_UP
@@ -162,7 +162,7 @@ def god_mode():
         # if the snake has the food, generates
         # a new food positon and grows the snake
         for i in food_list:
-            if snake_x1 == i[0] and snake_y1 == i[0]:
+            if snake_x1 == i[0] and snake_y1 == i[1]:
                 pygame.mixer.Sound.play(mlem)
                 i[0], i[1] = gen_food_position(
                     Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list, []

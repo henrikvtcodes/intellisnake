@@ -4,6 +4,7 @@ from pygame.locals import *
 from gamemodes.ai import ai_mode
 from gamemodes.classic import classic_mode
 from gamemodes.pvp import pvp_mode
+from gamemodes.god_mode import god_mode
 from init import GameStateContainer, clock, window
 from constants import (
     GameWindowStates,
@@ -42,6 +43,8 @@ if __name__ == "__main__":
                 pvp_mode()
             elif GameStateContainer.game_mode == GameModes.AI:
                 ai_mode()
+            elif GameStateContainer.game_mode == GameModes.GOD:
+                god_mode()
         elif GameStateContainer.window_state == GameWindowStates.END:
             window.fill(Colors.BLACK)
             """ If the window state is END, we want to render end screens.
