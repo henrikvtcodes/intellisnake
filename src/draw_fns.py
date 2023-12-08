@@ -80,3 +80,15 @@ def draw_background():
                     [x, i, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK],
                 )
             even += 1
+
+def draw_background_god():
+    even = 0
+    for x in range(0, Sizes.SCREEN_WIDTH, Sizes.SNAKE_BLOCK):
+        for i in range(0, Sizes.SCREEN_HEIGHT, Sizes.SNAKE_BLOCK):
+            if even % 2:
+                pygame.draw.rect(
+                    globals.window,
+                    Colors.BACKGROUND_SQUARES_GOD,
+                    [x, i, Sizes.SNAKE_BLOCK, Sizes.SNAKE_BLOCK],
+                )
+            even += 1

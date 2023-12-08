@@ -72,6 +72,21 @@ def start(screen: Surface = window):
         onClick=lambda: start_ai(),
     )
 
+    god_button = Button(
+        screen,
+        ((width - 100) / 2),
+        TITLE_TEXT.get_height() + 260,
+        100,
+        48,
+        text="AI Mode",
+        fontSize=24,
+        margin=5,
+        inactiveColour=Colors.BACKGROUND_GOD,
+        hoverColour=Colors.WHITE,
+        radius=5,
+        onClick=lambda: start_ai(),
+    )
+
     classic_button.draw()
 
     return pvp_button, classic_button, ai_button

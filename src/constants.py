@@ -10,7 +10,9 @@ class Colors:
     RED = (255, 0, 0)
 
     BACKGROUND = (255, 112, 205)
+    BACKGROUND_GOD = (33, 33, 33)
     BACKGROUND_SQUARES = (255, 135, 213)
+    BACKGROUND_SQUARES_GOD = (45, 45, 45)
     SNAKE = (90, 196, 255)
     PURPLY = (200, 0, 200)
     GREENISH = (52, 235, 134)

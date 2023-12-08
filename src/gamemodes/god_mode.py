@@ -11,7 +11,7 @@ from constants import (
     MAX_SCORE,
 )
 import init as globals
-from draw_fns import draw_snake, draw_message, draw_score, draw_background
+from draw_fns import draw_snake, draw_message, draw_score, draw_background_god
 from images import *
 from sounds import *
 
@@ -128,8 +128,8 @@ def god_mode():
         snake_y1 += y1_change
 
         # draws the background and food
-        globals.window.fill(Colors.BACKGROUND)
-        draw_background()
+        globals.window.fill(Colors.BACKGROUND_GOD)
+        draw_background_god()
 
         for b in food_list:
             globals.window.blit(grape_image, (b[0], b[1]))
