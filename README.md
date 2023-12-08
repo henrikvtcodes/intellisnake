@@ -5,8 +5,12 @@ By Henrik VT [@henrikvtcodes](https://github.com/henrikvtcodes) and Kelsyn C [@L
 IntelliSnake is a fun new version of the classic game Snake that comes with features such as:
 
 - 2P Multiplayer
-- an algorithmic opponent (not yet developed)
-- Chaos Mode
+- An AI Opponent
+- Sound Effects
+
+See below for different gamemodes!
+
+How to run:
 
 ## Gamemodes
 
@@ -20,7 +24,28 @@ Ever wanted to play snake with a friend? PvP mode features collision mechanics t
 
 ### AI Mode
 
-Man Vs. Machine. But, the machine is stupid. Can you outsmart it? Probably.
+Man Vs. Machine.
+
+### Development
+
+**Testing**  
+The process we used to test functions of the game is simply playtesting. Whenever we updated/fixed anything, we would run the game and try to cause problems. This would involve things like keysmashing, intentionally running into walls, and setting the snakes to collide with eachother in various ways. In order to test the AI, we set the speed extremely high to make sure that it doesn't fail after many cycles of the game.
+
+**Work Distribution**
+| Henrik | Kelsyn |
+| ------ | ------ |
+| - AI Algorithm v1 | - AI Algorithm v2 |
+| - Main Loop Structure | - Art Assets & Color |
+| - Organization and Conventions | - Initial Game Functionality |
+
+### Known Issues
+
+- The game will generally prevent you from doubling back on yourself, but if you press the right keys quick enough it will "break the snake's neck"
+- If allowed to run long enough, the AI algorithm will eventually trap itself, run into the human player, or hit the wall
+
+## Credits and Citations
+
+- **Initial Game Inspiration:** https://www.edureka.co/blog/snake-game-with-pygame/
 
 ## Development: Get Started
 
@@ -73,7 +98,3 @@ pip install <package>
 # Does not work on Windows
 rm -f requirements.txt && pip freeze > requirements.txt
 ```
-
-## Credits and Citations
-
-- **Initial Game Inspiration:** https://www.edureka.co/blog/snake-game-with-pygame/
