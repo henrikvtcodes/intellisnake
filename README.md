@@ -53,6 +53,9 @@ Ever wanted to play snake with a friend? PvP mode features collision mechanics t
 
 Man Vs. Machine. The machine is quick to get the grapes, so you better outsmart it!
 
+### God Mode
+Classic but with a twist - whenever you eat, a new effect befalls you! Some effects will stack. Can you beat this near-impossible challenge?
+
 ### Development
 
 **Testing**  
