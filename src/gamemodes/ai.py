@@ -17,7 +17,7 @@ from sounds import *
 import init as globals
 from sounds import *
 
-from draw_fns import draw_snake, draw_message, draw_background
+from draw_fns import draw_snake, draw_background
 
 
 def start_ai():
@@ -143,6 +143,7 @@ def ai_mode():
             or snake_y1 == Sizes.SCREEN_HEIGHT
             or snake_y1 < 0
         ):
+            pygame.mixer.Sound.play(willhelm)
             print("Game(Human): Out of bounds")
             pygame.mixer.Sound.play(willhelm)
             blue_lose = True
@@ -164,8 +165,10 @@ def ai_mode():
             print(f"AI SNAKE - X {snake_x2} Y {snake_y2}")
             print(f"HUMAN SNAKE - X {snake_x1} Y {snake_y1}")
             if blue_lose == True:
+                pygame.mixer.Sound.play(willhelm)
                 globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
             else:
+                pygame.mixer.Sound.play(willhelm)
                 globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
 
             globals.GameStateContainer.window_state = GameWindowStates.END
@@ -206,6 +209,7 @@ def ai_mode():
         # itself, ends the game if it has
         for x in snake_list_1[:-1]:
             if x == snake_head_1:
+                pygame.mixer.Sound.play(willhelm)
                 print("Game(Human): Hit self")
                 pygame.mixer.Sound.play(bonk)
                 blue_lose = True
@@ -217,8 +221,10 @@ def ai_mode():
                 print("Game(AI): Hit self")
                 pygame.mixer.Sound.play(bonk)
                 if blue_lose == True:
+                    pygame.mixer.Sound.play(willhelm)
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 else:
+                    pygame.mixer.Sound.play(willhelm)
                     globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
 
                 globals.GameStateContainer.window_state = GameWindowStates.END
@@ -229,6 +235,7 @@ def ai_mode():
                 print("Game: Collided with other player")
                 pygame.mixer.Sound.play(bonk)
                 green_lose = True
+                pygame.mixer.Sound.play(willhelm)
                 globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
 
@@ -238,8 +245,10 @@ def ai_mode():
                 print("Game: Collided with other player")
                 pygame.mixer.Sound.play(bonk)
                 if green_lose == True:
+                    pygame.mixer.Sound.play(willhelm)
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 else:
+                    pygame.mixer.Sound.play(willhelm)
                     globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
 
