@@ -182,12 +182,12 @@ def god_mode():
                     food_list.append([plchldr_x, plchldr_y])
                 # inverts controls
                 else:
-                    plchldr_dir = left
-                    left = right
-                    right = plchldr_dir
-                    plchldr_dir = up
-                    up = down
-                    down = plchldr_dir
+                    #plchldr_dir = left
+                    #left = right
+                    #right = plchldr_dir
+                    #plchldr_dir = up
+                    #up = down
+                    #down = plchldr_dir
 
                     plchldr_dir = left1
                     left1 = right1
@@ -202,6 +202,7 @@ def god_mode():
                     plchldr_dir = up2
                     up2 = down2
                     down2 = plchldr_dir
+                    print(f"up: {up} down: {down} left: {left} right: {right}")
 
         # makes time pass.
         globals.clock.tick(speed)
