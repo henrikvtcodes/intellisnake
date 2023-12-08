@@ -121,12 +121,18 @@ def ai_mode():
                 # max_coords = (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
                 # print(f"MAX_POS: X {max_coords[0]} Y {max_coords[1]}")
 
-        place_hldr = generate_next_move(snake_list_1, snake_list_2, snake_x2, snake_y2, food_x, food_y, direction_green)
+        place_hldr = generate_next_move(
+            snake_list_1,
+            snake_list_2,
+            snake_x2,
+            snake_y2,
+            food_x,
+            food_y,
+            direction_green,
+        )
         if not place_hldr == (0, 0):
             print(place_hldr)
             x2_change, y2_change = place_hldr
-
-
 
         if x2_change == Sizes.SNAKE_BLOCK:
             direction_green = SnakeDirections.RIGHT

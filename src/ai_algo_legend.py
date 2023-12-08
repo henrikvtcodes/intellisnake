@@ -1,5 +1,6 @@
 from constants import *
 
+
 def check_collison_course(opp_snake, my_snake, x, y, cur_dir):
     print(cur_dir)
     if cur_dir == SnakeDirections.DOWN:
@@ -10,7 +11,7 @@ def check_collison_course(opp_snake, my_snake, x, y, cur_dir):
         x -= Sizes.SNAKE_BLOCK
     if cur_dir == SnakeDirections.RIGHT:
         x += Sizes.SNAKE_BLOCK
- 
+
     for i in opp_snake:
         if i[0] == x and i[1] == y:
             print("Collision immenent!")
@@ -21,9 +22,7 @@ def check_collison_course(opp_snake, my_snake, x, y, cur_dir):
     return False
 
 
-
 def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
-
     up = (0, -Sizes.SNAKE_BLOCK)
     down = (0, Sizes.SNAKE_BLOCK)
     left = (-Sizes.SNAKE_BLOCK, 0)
@@ -56,10 +55,10 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
     if y == Sizes.SCREEN_HEIGHT - Sizes.SNAKE_BLOCK:
         oob_down = True
         print("oob down")
-    if y < 20: 
+    if y < 20:
         print("oob up")
         oob_up = True
-    
+
     if oob_right:
         if cur_dir == SnakeDirections.RIGHT:
             if oob_down:
@@ -74,7 +73,7 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
                 return up
             else:
                 return desired_y
-        
+
     if oob_left:
         print(cur_dir)
         if cur_dir == SnakeDirections.LEFT:
@@ -90,7 +89,7 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
                 return up
             else:
                 return desired_y
-        
+
     if oob_up:
         if cur_dir == SnakeDirections.UP:
             if oob_right:
@@ -101,11 +100,13 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
                 return right
             elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.LEFT):
                 return right
-            elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.RIGHT):
+            elif check_collison_course(
+                opp_snake, my_snake, x, y, SnakeDirections.RIGHT
+            ):
                 return left
             else:
                 return desired_x
-            
+
     if oob_down:
         if cur_dir == SnakeDirections.DOWN:
             if oob_right:
@@ -116,11 +117,13 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
                 return right
             elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.LEFT):
                 return right
-            elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.RIGHT):
+            elif check_collison_course(
+                opp_snake, my_snake, x, y, SnakeDirections.RIGHT
+            ):
                 return left
             else:
                 return desired_x
-    
+
     if check_collison_course(opp_snake, my_snake, x, y, cur_dir):
         print("Collision warning received")
         if cur_dir == SnakeDirections.UP or cur_dir == SnakeDirections.DOWN:
@@ -131,12 +134,13 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
                 return left
             elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.LEFT):
                 return right
-            elif check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.RIGHT):
+            elif check_collison_course(
+                opp_snake, my_snake, x, y, SnakeDirections.RIGHT
+            ):
                 return left
             else:
                 return desired_x
-            
-            
+
         elif cur_dir == SnakeDirections.LEFT or cur_dir == SnakeDirections.RIGHT:
             print("issue is here 2")
             if oob_down:
@@ -152,19 +156,37 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
 
     if cur_dir == SnakeDirections.UP or cur_dir == SnakeDirections.DOWN:
         if x > goal_x:
-            if not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.LEFT) and not oob_left:
+            if (
+                not check_collison_course(
+                    opp_snake, my_snake, x, y, SnakeDirections.LEFT
+                )
+                and not oob_left
+            ):
                 return left
         elif x < goal_x:
-            if not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.RIGHT) and not oob_right:
+            if (
+                not check_collison_course(
+                    opp_snake, my_snake, x, y, SnakeDirections.RIGHT
+                )
+                and not oob_right
+            ):
                 return right
     if cur_dir == SnakeDirections.LEFT or cur_dir == SnakeDirections.RIGHT:
         if y > goal_y:
-            if not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.UP) and not oob_up:
+            if (
+                not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.UP)
+                and not oob_up
+            ):
                 return up
         elif y < goal_y:
-            if not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.DOWN) and not oob_down:
+            if (
+                not check_collison_course(
+                    opp_snake, my_snake, x, y, SnakeDirections.DOWN
+                )
+                and not oob_down
+            ):
                 return down
-    
+
     print("no oob detected")
     return (0, 0)
 
