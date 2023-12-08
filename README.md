@@ -5,8 +5,8 @@ By Henrik VT [@henrikvtcodes](https://github.com/henrikvtcodes) and Kelsyn C [@L
 IntelliSnake is a fun new version of the classic game Snake that comes with features such as:
 
 - 2P Multiplayer
-- an algorithmic opponent (not yet developed)
-- Chaos Mode
+- an algorithmic opponent
+- Classic single player
 
 ## Gamemodes
 
@@ -20,7 +20,7 @@ Ever wanted to play snake with a friend? PvP mode features collision mechanics t
 
 ### AI Mode
 
-Man Vs. Machine. But, the machine is stupid. Can you outsmart it? Probably.
+Man Vs. Machine. The machine is quick to get the grapes, so you better outsmart it!
 
 ## Development: Get Started
 
