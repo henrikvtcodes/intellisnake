@@ -123,10 +123,22 @@ def generate_next_move(opp_snake, my_snake, x, y, goal_x, goal_y, cur_dir):
             else:
                 return up
 
-
+    if cur_dir == SnakeDirections.UP or cur_dir == SnakeDirections.DOWN:
+        if x > goal_x:
+            if not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.LEFT) and not oob_left:
+                return left
+        elif x < goal_x:
+            if not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.RIGHT) and not oob_right:
+                return right
+    if cur_dir == SnakeDirections.LEFT or cur_dir == SnakeDirections.RIGHT:
+        if y > goal_y:
+            if not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.UP) and not oob_up:
+                return up
+        elif y < goal_y:
+            if not check_collison_course(opp_snake, my_snake, x, y, SnakeDirections.DOWN) and not oob_down:
+                return down
+    
     print("no oob detected")
     return (0, 0)
 
-    # Checks if it will hit itself
-    # checks if it will hit other snake
     # Tries to move to grape
