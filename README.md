@@ -51,7 +51,7 @@ The process we used to test functions of the game is simply playtesting. Wheneve
 | ------ | ------ |
 | - AI Algorithm v1 | - AI Algorithm v2 |
 | - Main Loop Structure | - Art Assets & Color |
-| - Organization and Conventions | - Initial Game Functionality |
+| - Organization and Conventions | - Classic and pvp base programming |
 
 ### Known Issues
 
