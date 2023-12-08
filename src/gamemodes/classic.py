@@ -31,9 +31,6 @@ def start_classic():
 # The main game outline is here. We could make
 # other functions for other gamemodes.
 def classic_mode():
-    game_over = False
-    game_close = False
-
     # Generates our current only snakes starting
     # pos.
     snake_x1 = Sizes.SCREEN_WIDTH / 2

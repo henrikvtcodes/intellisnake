@@ -1,6 +1,5 @@
 import pygame
-import init as globals
-from constants import Colors, Sizes, Fonts
+from constants import Sizes
 import platform
 
 # Windows NTFS paths uses backslashes for some reason, so this code is for loading images on Windows

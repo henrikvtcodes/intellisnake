@@ -13,6 +13,7 @@ from constants import (
     Colors,
 )
 import screens
+
 # the part that we actually run.
 if __name__ == "__main__":
     pygame.init()
@@ -31,12 +32,6 @@ if __name__ == "__main__":
             # Only start screen uses widgets so we only need to update pygame_widgets when we render the start screen
 
             pygame_widgets.update(events)
-
-            """ Sleep for 100ms to prevent race condition bug. 
-            Thank you Clayton for finding this bug, and stopping my (Henrik) descent into .
-            """
-            # if first_run:
-            # time.sleep(1)
 
         elif GameStateContainer.window_state == GameWindowStates.PLAYING:
             # If the window state is playing, then start the respective game

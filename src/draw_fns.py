@@ -65,7 +65,6 @@ def draw_message(msg: str, color: tuple[int, int, int]):
     # displays the score. Not currently used in this gamemode.
 
 
-# Do we want to call it elsewhere so there is a constant score?
 def draw_score(score: int):
     value = Fonts.SCORE_FONT.render("Your Score: " + str(score), True, Colors.GREENISH)
 

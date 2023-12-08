@@ -36,13 +36,10 @@ def start_ai():
 frame_count = 0
 
 
-# loop for playing pvp mode
+# loop for playing ai mode
 def ai_mode():
-    game_over = False
-    game_close = False
     blue_lose = False
     green_lose = False
-    both_lose = False
     print("AI MODE")
     # Generates starting position of both
     # snakes.
@@ -210,7 +207,6 @@ def ai_mode():
             if x == snake_head_1:
                 print("Game(Human): Hit self")
                 pygame.mixer.Sound.play(bonk)
-                game_close = True
                 blue_lose = True
                 globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
@@ -219,7 +215,6 @@ def ai_mode():
             if x == snake_head_2:
                 print("Game(AI): Hit self")
                 pygame.mixer.Sound.play(bonk)
-                game_close = True
                 if blue_lose == True:
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 else:

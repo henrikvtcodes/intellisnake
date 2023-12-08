@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-import numpy as np
 from food import gen_food_position
 from constants import (
     Colors,
@@ -15,7 +14,7 @@ from sounds import *
 
 import init as globals
 
-from draw_fns import draw_snake, draw_message, draw_background
+from draw_fns import draw_snake, draw_background
 
 
 def start_pvp():
@@ -32,11 +31,8 @@ def start_pvp():
 
 # loop for playing pvp mode
 def pvp_mode():
-    game_over = False
-    game_close = False
     blue_lose = False
     green_lose = False
-    both_lose = False
 
     # Generates starting position of both
     # snakes.
@@ -133,7 +129,6 @@ def pvp_mode():
             or snake_y1 < 0
         ):
             print("Out of bounds")
-            game_close = True
             blue_lose = True
 
             globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
@@ -149,7 +144,6 @@ def pvp_mode():
             or snake_y2 < 0
         ):
             print(snake_x2, snake_y2)
-            game_close = True
             if blue_lose == True:
                 globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 pygame.mixer.Sound.play(willhelm)
@@ -196,7 +190,6 @@ def pvp_mode():
         for x in snake_list_1[:-1]:
             if x == snake_head_1:
                 print("Hit self")
-                game_close = True
                 blue_lose = True
                 globals.GameStateContainer.end_state = GameEndStates.P1_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
@@ -204,7 +197,6 @@ def pvp_mode():
         for x in snake_list_2[:-1]:
             if x == snake_head_2:
                 print("Hit self")
-                game_close = True
                 if blue_lose == True:
                     pygame.mixer.Sound.play(bonk)
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
@@ -218,7 +210,6 @@ def pvp_mode():
         for i in snake_list_1[:-1]:
             if i == snake_head_2:
                 print("collided with other player")
-                game_close = True
                 green_lose = True
 
                 globals.GameStateContainer.end_state = GameEndStates.P2_LOSE
@@ -228,7 +219,6 @@ def pvp_mode():
         for i in snake_list_2[:-1]:
             if i == snake_head_1:
                 print("Collided with other player")
-                game_close = True
                 if green_lose == True:
                     pygame.mixer.Sound.play(bonk)
                     globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
@@ -242,8 +232,6 @@ def pvp_mode():
             if snake_head_1 == snake_head_2:
                 print("Head to head")
                 pygame.mixer.Sound.play(bonk)
-                game_close = True
-                both_lose = True
                 globals.GameStateContainer.end_state = GameEndStates.BOTH_LOSE
                 globals.GameStateContainer.window_state = GameWindowStates.END
 
