@@ -16,6 +16,7 @@ from constants import (
 )
 from images import *
 from ai_algo import prev_food_pos, current_food_strategy, FoodStrategy
+from ai_algo_legend import generate_next_move
 
 import init as globals
 
@@ -67,7 +68,7 @@ def ai_mode():
     x1_change = 0
     y1_change = 0
     x2_change = 0
-    y2_change = 0
+    y2_change = -Sizes.SNAKE_BLOCK
 
     snake_list_1 = []
     snake_length_1 = 1
@@ -120,34 +121,21 @@ def ai_mode():
                 # max_coords = (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT)
                 # print(f"MAX_POS: X {max_coords[0]} Y {max_coords[1]}")
 
-                ai_move = next_ai_move(
-                    (snake_x2, snake_y2),
-                    direction_green,
-                    (snake_x1, snake_y1),
-                    (food_x, food_y),
-                    (Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT),
-                )
+        place_hldr = generate_next_move(snake_list_1, snake_list_2, snake_x2, snake_y2, food_x, food_y, direction_green)
+        if not place_hldr == (0, 0):
+            print(place_hldr)
+            x2_change, y2_change = place_hldr
 
-                if ai_move == SnakeDirections.LEFT:
-                    if not x2_change == Sizes.SNAKE_BLOCK:
-                        x2_change = -Sizes.SNAKE_BLOCK
-                        y2_change = 0
-                        direction_green = SnakeDirections.LEFT
-                if ai_move == SnakeDirections.RIGHT:
-                    if not x2_change == -Sizes.SNAKE_BLOCK:
-                        x2_change = Sizes.SNAKE_BLOCK
-                        y2_change = 0
-                        direction_green = SnakeDirections.RIGHT
-                if ai_move == SnakeDirections.UP:
-                    if not y2_change == Sizes.SNAKE_BLOCK:
-                        x2_change = 0
-                        y2_change = -Sizes.SNAKE_BLOCK
-                        direction_green = SnakeDirections.UP
-                if ai_move == SnakeDirections.DOWN:
-                    if not y2_change == -Sizes.SNAKE_BLOCK:
-                        x2_change = 0
-                        y2_change = Sizes.SNAKE_BLOCK
-                        direction_green = SnakeDirections.DOWN
+
+
+        if x2_change == Sizes.SNAKE_BLOCK:
+            direction_green = SnakeDirections.RIGHT
+        if x2_change == -Sizes.SNAKE_BLOCK:
+            direction_green = SnakeDirections.LEFT
+        if y2_change == Sizes.SNAKE_BLOCK:
+            direction_green = SnakeDirections.DOWN
+        if y2_change == -Sizes.SNAKE_BLOCK:
+            direction_green = SnakeDirections.UP
 
         # checks if the p1 snake is out of bounds.
         # assigns win to green if true.
