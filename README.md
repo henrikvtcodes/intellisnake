@@ -4,13 +4,28 @@ By Henrik VT [@henrikvtcodes](https://github.com/henrikvtcodes) and Kelsyn C [@L
 
 IntelliSnake is a fun new version of the classic game Snake that comes with features such as:
 
+- Classic Single Player
 - 2P Multiplayer
-- An AI Opponent
+- An AI Algoritmic Opponent
 - Sound Effects
 
 See below for different gamemodes!
 
 How to run:
+
+```sh
+# --- Create Virtual Environment ---
+python -m venv .venv
+# --- Activate Virtual Environment ---
+# Mac OS / Linux
+source .venv/bin/activate
+# Windows
+./.venv/bin/Activate.ps1
+# --- Install Dependencies ---
+pip install -r requirements.txt
+# --- Run Program! ---
+python src/main.py
+```
 
 ## Gamemodes
 
@@ -24,7 +39,7 @@ Ever wanted to play snake with a friend? PvP mode features collision mechanics t
 
 ### AI Mode
 
-Man Vs. Machine.
+Man Vs. Machine. The machine is quick to get the grapes, so you better outsmart it!
 
 ### Development
 

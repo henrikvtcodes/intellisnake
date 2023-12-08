@@ -12,6 +12,7 @@ from constants import (
 )
 from images import *
 from ai_algo_v2 import generate_next_move
+from sounds import *
 
 import init as globals
 from sounds import *
@@ -272,6 +273,7 @@ def ai_mode():
         # if the snake has the food, generates
         # a new food positon and grows the snake
         if snake_x1 == food_x and snake_y1 == food_y:
+            pygame.mixer.Sound.play(mlem)
             print("Game(Food): Human Player Consumed Food")
             pygame.mixer.Sound.play(mlem)
             new_food_pos = gen_food_position(
@@ -281,6 +283,7 @@ def ai_mode():
 
             snake_length_1 += 1
         elif snake_x2 == food_x and snake_y2 == food_y:
+            pygame.mixer.Sound.play(mlem)
             print("Game(Food): AI Player Consumed Food")
             pygame.mixer.Sound.play(mlem)
             food_x, food_y = gen_food_position(
