@@ -15,6 +15,7 @@ from constants import (
     SnakeDirections,
 )
 from images import *
+from sounds import *
 from ai_algo import prev_food_pos, current_food_strategy, FoodStrategy
 from ai_algo_legend import generate_next_move
 
@@ -270,6 +271,7 @@ def ai_mode():
         # if the snake has the food, generates
         # a new food positon and grows the snake
         if snake_x1 == food_x and snake_y1 == food_y:
+            pygame.mixer.Sound.play(mlem)
             print("Game(Food): Human Player Consumed Food")
             new_food_pos = gen_food_position(
                 Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2
@@ -280,6 +282,7 @@ def ai_mode():
 
             snake_length_1 += 1
         elif snake_x2 == food_x and snake_y2 == food_y:
+            pygame.mixer.Sound.play(mlem)
             print("Game(Food): AI Player Consumed Food")
             food_x, food_y = gen_food_position(
                 Sizes.SCREEN_WIDTH, Sizes.SCREEN_HEIGHT, snake_list_1, snake_list_2
