@@ -94,16 +94,19 @@ def ai_mode():
                         x1_change = -Sizes.SNAKE_BLOCK
                         y1_change = 0
                         direction_blue = SnakeDirections.LEFT
+                        break
                 if event.key == pygame.K_RIGHT:
                     if not x1_change == -Sizes.SNAKE_BLOCK:
                         x1_change = Sizes.SNAKE_BLOCK
                         y1_change = 0
                         direction_blue = SnakeDirections.RIGHT
+                        break
                 if event.key == pygame.K_UP:
                     if not y1_change == Sizes.SNAKE_BLOCK:
                         x1_change = 0
                         y1_change = -Sizes.SNAKE_BLOCK
                         direction_blue = SnakeDirections.UP
+                        break
                 if event.key == pygame.K_DOWN:
                     if not y1_change == -Sizes.SNAKE_BLOCK:
                         x1_change = 0

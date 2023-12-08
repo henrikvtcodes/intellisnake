@@ -70,16 +70,19 @@ def classic_mode():
                         x1_change = -Sizes.SNAKE_BLOCK
                         y1_change = 0
                         direction = "left"
+                        break
                 elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     if not x1_change == -Sizes.SNAKE_BLOCK:
                         x1_change = Sizes.SNAKE_BLOCK
                         y1_change = 0
                         direction = "right"
+                        break
                 elif event.key == pygame.K_UP or event.key == pygame.K_w:
                     if not y1_change == Sizes.SNAKE_BLOCK:
                         x1_change = 0
                         y1_change = -Sizes.SNAKE_BLOCK
                         direction = "up"
+                        break
                 elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     if not y1_change == -Sizes.SNAKE_BLOCK:
                         x1_change = 0
