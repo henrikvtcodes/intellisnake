@@ -1,6 +1,5 @@
 import pygame
 import pygame_widgets
-import logging
 from pygame.locals import *
 from gamemodes.ai import ai_mode
 from gamemodes.classic import classic_mode
@@ -12,14 +11,8 @@ from constants import (
     GameEndStates,
     SNAKE_SPEED,
     Colors,
-    Loggers,
 )
 import screens
-from ai_algo_legend import generate_next_move
-
-logging.getLogger(Loggers.ALGORITHM.value).setLevel(logging.DEBUG)
-logging.getLogger(Loggers.GAME.value).setLevel(logging.DEBUG)
-
 # the part that we actually run.
 if __name__ == "__main__":
     pygame.init()
