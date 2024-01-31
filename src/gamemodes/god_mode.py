@@ -170,9 +170,9 @@ def god_mode():
                 snake_length += 1
 
                 gods_choice = random.randint(0, 2)
-                # doubles speed
+                # increases speed
                 if gods_choice == 0:
-                    speed = speed * 2
+                    speed = speed * 1.2
                 # adds another grape
                 elif gods_choice == 1:
                     num_food += 1

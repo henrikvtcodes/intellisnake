@@ -89,25 +89,25 @@ def ai_mode():
                 globals.GameStateContainer.window_state = GameWindowStates.EXIT
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                     if not x1_change == Sizes.SNAKE_BLOCK:
                         x1_change = -Sizes.SNAKE_BLOCK
                         y1_change = 0
                         direction_blue = SnakeDirections.LEFT
                         break
-                if event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                     if not x1_change == -Sizes.SNAKE_BLOCK:
                         x1_change = Sizes.SNAKE_BLOCK
                         y1_change = 0
                         direction_blue = SnakeDirections.RIGHT
                         break
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_UP or event.key == pygame.K_w:
                     if not y1_change == Sizes.SNAKE_BLOCK:
                         x1_change = 0
                         y1_change = -Sizes.SNAKE_BLOCK
                         direction_blue = SnakeDirections.UP
                         break
-                if event.key == pygame.K_DOWN:
+                if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     if not y1_change == -Sizes.SNAKE_BLOCK:
                         x1_change = 0
                         y1_change = Sizes.SNAKE_BLOCK
